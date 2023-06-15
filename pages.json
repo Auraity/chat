@@ -1,18 +1,18 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "mychat",
-				"enablePullDownRefresh": true
-			}
-		}, {
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "mychat",
+				"enablePullDownRefresh": true
+			}
 		}, {
 			"path": "pages/register/register",
 			"style": {
@@ -23,21 +23,21 @@
 		}, {
 			"path": "pages/contacts/contacts",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "联系人",
 				"enablePullDownRefresh": false
 			}
 
 		}, {
 			"path": "pages/trends/trends",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "朋友圈",
 				"enablePullDownRefresh": false
 			}
 
 		}, {
 			"path": "pages/addFrends/addFrends",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "添加好友",
 				"enablePullDownRefresh": false
 			}
 
@@ -51,7 +51,7 @@
 		}, {
 			"path": "pages/my/my",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "我的",
 				"enablePullDownRefresh": false
 			}
 

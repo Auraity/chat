@@ -1,1 +1,1 @@
-<view></view>
+<view class="container"><block wx:if="{{r0}}"><textarea class="content-input" placeholder="请输入内容..." maxlength="200" value="{{a}}" bindinput="{{b}}"></textarea></block><view class="button-container"><button class="publish-button" bindtap="{{c}}">发布</button></view></view>

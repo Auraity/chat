@@ -6,12 +6,12 @@ const _sfc_main = {
     let email = common_vendor.ref("");
     let pwd = common_vendor.ref("");
     function toRegister() {
-      common_vendor.index.redirectTo({
+      common_vendor.index.navigateTo({
         url: "/pages/register/register"
       });
     }
     function toFogPwd() {
-      common_vendor.index.redirectTo({
+      common_vendor.index.navigateTo({
         url: "/pages/forgetPwd/forgetPwd"
       });
     }

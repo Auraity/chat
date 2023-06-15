@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "",
+  "navigationBarTitleText": "联系人",
   "enablePullDownRefresh": false,
   "usingComponents": {
     "contac": "../../components/contac/contac"

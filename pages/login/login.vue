@@ -24,13 +24,13 @@
 	let pwd = ref('');
 
 	function toRegister() {
-		uni.redirectTo({
+		uni.navigateTo({
 			url: '/pages/register/register'
 		})
 	}
 
 	function toFogPwd() {
-		uni.redirectTo({
+		uni.navigateTo({
 			url: '/pages/forgetPwd/forgetPwd'
 		})
 	}
