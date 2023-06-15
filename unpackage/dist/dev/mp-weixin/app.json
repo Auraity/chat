@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/contacts/contacts",
+    "pages/trends/trends",
+    "pages/addFrends/addFrends",
+    "pages/textEdit/textEdit",
+    "pages/my/my",
+    "pages/myTrends/myTrends",
+    "pages/ChangePwd/ChangePwd",
+    "pages/forgetPwd/forgetPwd",
+    "pages/searchPage/searchPage"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#f4f4f4",
+    "backgroundColor": "#f4f4f4"
+  },
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#28b3dd",
+    "list": [
+      {
+        "text": "消息",
+        "pagePath": "pages/index/index",
+        "iconPath": "static/tabbar/home.png",
+        "selectedIconPath": "static/tabbar/home(1).png"
+      },
+      {
+        "text": "联系人",
+        "pagePath": "pages/contacts/contacts",
+        "iconPath": "static/tabbar/contact.png",
+        "selectedIconPath": "static/tabbar/contact(1).png"
+      },
+      {
+        "text": "朋友圈",
+        "pagePath": "pages/trends/trends",
+        "iconPath": "static/tabbar/trends.png",
+        "selectedIconPath": "static/tabbar/trends(1).png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/my/my",
+        "iconPath": "static/tabbar/user.png",
+        "selectedIconPath": "static/tabbar/user (1).png"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

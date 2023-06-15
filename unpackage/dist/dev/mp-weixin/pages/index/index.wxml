@@ -1,0 +1,1 @@
+<view class="container data-v-1cf27b2a"><view class="search data-v-1cf27b2a"><input class="data-v-1cf27b2a" type="text" placeholder="     点击此处进行搜索"/></view><view wx:for="{{a}}" wx:for-item="i" wx:key="b" class="messageList data-v-1cf27b2a"><message-list-cop class="data-v-1cf27b2a" u-i="{{i.a}}" bind:__l="__l"></message-list-cop></view></view>
