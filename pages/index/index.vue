@@ -1,16 +1,28 @@
 <template>
 	<view class="container">
-		<view class="search">
-			<input type="text" placeholder="     点击此处进行搜索" />
+		<view class="search" @click="toSearch">
+			<input type="text" placeholder="     ※ 点击此处进行消息搜索" />
 		</view>
 		<view class="messageList" v-for="i in 10" :key="i">
-			<messageListCop></messageListCop>
+			<view @click="enterSocket">
+				<messageListCop></messageListCop>
+			</view>
 		</view>
 	</view>
 </template>
 
 <script setup>
+	function toSearch() {
+		uni.navigateTo({
+			url: "/pages/searchPage/searchPage"
+		})
+	}
 
+	function enterSocket() {
+		uni.navigateTo({
+			url: "/pages/WebSocket/WebSocket"
+		})
+	}
 </script>
 
 <style lang="scss" scoped>

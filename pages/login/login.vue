@@ -1,17 +1,19 @@
 <template>
 	<view class="container">
 		<view class="logo"><text>MyChat</text></view>
-		<view class="input-container">
-			<input v-model="email" type="text" placeholder="请输入email" class="input" />
+		<view class="content">
+			<view class="input-container">
+				<input v-model="email" type="text" placeholder="请输入email" class="input" />
+			</view>
+			<view class="input-container">
+				<input v-model="pwd" type="text" placeholder="请输入密码" class="input" />
+			</view>
+			<view class="text">
+				<text @click="toRegister">点击注册</text>
+				<text class="forget" @click="toFogPwd">忘记密码?</text>
+			</view>
+			<button @click="login" class="login-button">登录</button>
 		</view>
-		<view class="input-container">
-			<input v-model="pwd" type="text" placeholder="请输入密码" class="input" />
-		</view>
-		<view class="text">
-			<text @click="toRegister">点击注册</text>
-			<text class="forget" @click="toFogPwd">忘记密码?</text>
-		</view>
-		<button @click="login" class="login-button">登录</button>
 	</view>
 </template>
 
@@ -36,6 +38,9 @@
 	}
 
 	function login() {
+		uni.reLaunch({
+			url: '/pages/index/index'
+		})
 		console.log("登录");
 	}
 </script>
@@ -97,42 +102,47 @@
 
 		}
 
-		.input-container {
-			margin-bottom: 20rpx;
-			width: 500rpx;
+		.content {
+			margin-top: 110rpx;
 
-			.input {
-				height: 40rpx;
-				margin: 30rpx 0;
-				border-bottom: 1rpx solid #ccc;
+			.input-container {
+				margin-bottom: 40rpx;
+				width: 500rpx;
+
+				.input {
+					height: 40rpx;
+					margin: 30rpx 0;
+					border-bottom: 1rpx solid #ccc;
+					font-size: 26rpx;
+				}
+			}
+
+			.text {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
 				font-size: 24rpx;
+				color: royalblue;
+				margin-top: 50rpx;
+
+				.forget {
+					color: gray !important;
+				}
 			}
-		}
 
-		.text {
-			width: 400rpx;
-			display: flex;
-			justify-content: space-between;
-			font-size: 24rpx;
-			color: royalblue;
-
-			.forget {
-				color: gray !important;
+			.login-button {
+				width: 100%;
+				margin-top: 100rpx;
+				height: 80rpx;
+				background-color: #0aa3b4;
+				color: #fff;
+				border: none;
+				border-radius: 5rpx;
+				font-size: 28rpx;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
 			}
-		}
-
-		.login-button {
-			width: 80%;
-			margin-top: 50rpx;
-			height: 80rpx;
-			background-color: #0aa3b4;
-			color: #fff;
-			border: none;
-			border-radius: 5rpx;
-			font-size: 28rpx;
-			align-items: center;
-			justify-content: center;
-			cursor: pointer;
 		}
 	}
 </style>

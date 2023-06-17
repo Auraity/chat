@@ -11,7 +11,8 @@
     "pages/myTrends/myTrends",
     "pages/ChangePwd/ChangePwd",
     "pages/forgetPwd/forgetPwd",
-    "pages/searchPage/searchPage"
+    "pages/searchPage/searchPage",
+    "pages/WebSocket/WebSocket"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -14,6 +14,7 @@ if (!Math) {
   "./pages/ChangePwd/ChangePwd.js";
   "./pages/forgetPwd/forgetPwd.js";
   "./pages/searchPage/searchPage.js";
+  "./pages/WebSocket/WebSocket.js";
 }
 const _sfc_main = {
   onLaunch: function() {

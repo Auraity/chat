@@ -79,12 +79,21 @@
 		}, {
 			"path": "pages/searchPage/searchPage",
 			"style": {
-				"navigationBarTitleText": "搜索结果",
+				"navigationBarTitleText": "搜索",
 				"enablePullDownRefresh": false
 			}
 
 		}
-	],
+	    ,{
+            "path" : "pages/WebSocket/WebSocket",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

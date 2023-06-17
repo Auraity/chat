@@ -72,29 +72,33 @@ page.data-v-e4e4508d {
   height: 70rpx;
   pointer-events: none;
 }
-.container .input-container.data-v-e4e4508d {
-  margin-bottom: 20rpx;
+.container .content.data-v-e4e4508d {
+  margin-top: 110rpx;
+}
+.container .content .input-container.data-v-e4e4508d {
+  margin-bottom: 40rpx;
   width: 500rpx;
 }
-.container .input-container .input.data-v-e4e4508d {
+.container .content .input-container .input.data-v-e4e4508d {
   height: 40rpx;
   margin: 30rpx 0;
   border-bottom: 1rpx solid #ccc;
-  font-size: 24rpx;
+  font-size: 26rpx;
 }
-.container .text.data-v-e4e4508d {
-  width: 400rpx;
+.container .content .text.data-v-e4e4508d {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   font-size: 24rpx;
   color: royalblue;
+  margin-top: 50rpx;
 }
-.container .text .forget.data-v-e4e4508d {
+.container .content .text .forget.data-v-e4e4508d {
   color: gray !important;
 }
-.container .login-button.data-v-e4e4508d {
-  width: 80%;
-  margin-top: 50rpx;
+.container .content .login-button.data-v-e4e4508d {
+  width: 100%;
+  margin-top: 100rpx;
   height: 80rpx;
   background-color: #0aa3b4;
   color: #fff;

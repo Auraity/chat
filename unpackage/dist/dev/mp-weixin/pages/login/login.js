@@ -16,6 +16,9 @@ const _sfc_main = {
       });
     }
     function login() {
+      common_vendor.index.reLaunch({
+        url: "/pages/index/index"
+      });
       console.log("登录");
     }
     return (_ctx, _cache) => {

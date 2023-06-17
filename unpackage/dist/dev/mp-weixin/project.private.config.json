@@ -23,6 +23,27 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "我的",
+          "pathName": "pages/my/my",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "搜索",
+          "pathName": "pages/searchPage/searchPage",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "聊天会话",
+          "pathName": "pages/WebSocket/WebSocket",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

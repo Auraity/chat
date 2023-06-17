@@ -1,1 +1,1 @@
-<view></view>
+<view class="container"><view class="header"><image class="avatar" src="/static/logo.png"></image></view><view class="info-list"><view wx:for="{{a}}" wx:for-item="item" wx:key="c" class="info-item"><text class="info-label">{{item.a}}</text><text class="info-value">{{item.b}}</text><image class="arrow-icon" src="/static/arrowRight.png"></image></view></view></view>

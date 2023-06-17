@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<view class="search">
-			<input type="text" placeholder="     点击此处进行搜索" />
+			<input type="text" placeholder="     ※ 点击此处进行联系人搜索" />
 			<button type="default">✚</button>
 		</view>
 		<contac></contac>
