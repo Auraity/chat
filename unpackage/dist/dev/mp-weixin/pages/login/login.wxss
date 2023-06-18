@@ -23,17 +23,17 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-page.data-v-e4e4508d {
+page {
   background-color: #f4f4f4;
 }
-.container.data-v-e4e4508d {
+.container {
   display: flex;
   flex-direction: column;
   margin-top: 100rpx;
   align-items: center;
   justify-content: center;
 }
-.container .logo.data-v-e4e4508d {
+.container .logo {
   width: 500rpx;
   text-align: center;
   margin-bottom: 150rpx;
@@ -41,18 +41,18 @@ page.data-v-e4e4508d {
   font-size: 60rpx;
   font-family: "黑体";
 }
-.container .input-email.data-v-e4e4508d {
+.container .input-email {
   width: 500rpx;
   justify-content: center;
   display: flex;
 }
-.container .input-email .emailInput.data-v-e4e4508d {
+.container .input-email .emailInput {
   height: 40rpx;
   margin: 30rpx 0;
   border-bottom: 1rpx solid #ccc;
   font-size: 24rpx;
 }
-.container .input-email .codeCli.data-v-e4e4508d {
+.container .input-email .codeCli {
   width: 30%;
   background-color: #0aa3b4;
   color: #fff;
@@ -62,7 +62,7 @@ page.data-v-e4e4508d {
   cursor: pointer;
   height: 70rpx;
 }
-.container .input-email .codeSecond.data-v-e4e4508d {
+.container .input-email .codeSecond {
   width: 30%;
   background-color: darkgray;
   color: #fff;
@@ -72,20 +72,20 @@ page.data-v-e4e4508d {
   height: 70rpx;
   pointer-events: none;
 }
-.container .content.data-v-e4e4508d {
+.container .content {
   margin-top: 110rpx;
 }
-.container .content .input-container.data-v-e4e4508d {
+.container .content .input-container {
   margin-bottom: 40rpx;
   width: 500rpx;
 }
-.container .content .input-container .input.data-v-e4e4508d {
+.container .content .input-container .input {
   height: 40rpx;
   margin: 30rpx 0;
   border-bottom: 1rpx solid #ccc;
   font-size: 26rpx;
 }
-.container .content .text.data-v-e4e4508d {
+.container .content .text {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -93,10 +93,10 @@ page.data-v-e4e4508d {
   color: royalblue;
   margin-top: 50rpx;
 }
-.container .content .text .forget.data-v-e4e4508d {
+.container .content .text .forget {
   color: gray !important;
 }
-.container .content .login-button.data-v-e4e4508d {
+.container .content .login-button {
   width: 100%;
   margin-top: 100rpx;
   height: 80rpx;

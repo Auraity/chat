@@ -1,0 +1,1 @@
+<view class="card"><view class="cleft"><image class="thumbnail" src="/static/logo.png"/><view class="content"><text class="title"> 姓名 </text></view></view><view class="cright"><view wx:if="{{1}}" class="allbtn"><button class="btn agreenbtn">同意</button><button class="btn refusebtn">拒绝</button></view><text wx:else>已同意</text></view></view>

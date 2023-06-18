@@ -23,27 +23,38 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.card {
+.container {
+  justify-content: space-between;
+  display: flex;
+}
+.container .card {
   display: flex;
   align-items: center;
   padding: 0;
   margin: 20rpx 40rpx;
 }
-.card .thumbnail {
+.container .card .msgDate {
+  color: #939393;
+  font-size: 20rpx;
+  height: 100rpx;
+  border-bottom: 1rpx solid #dddddd;
+}
+.container .card .thumbnail {
   width: 100rpx;
   height: 100rpx;
   margin-right: 20rpx;
 }
-.card .content {
+.container .card .content {
   flex: 1;
   border-bottom: 1rpx solid #dddddd;
   height: 100rpx;
+  width: 400rpx;
 }
-.card .content .title {
+.container .card .content .title {
   font-size: 34rpx;
   font-weight: bold;
 }
-.card .content .description {
+.container .card .content .description {
   font-size: 28rpx;
   color: #666;
 }

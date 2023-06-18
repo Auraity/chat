@@ -8,10 +8,10 @@
 						<text class="message-text">{{ message.content }}</text><br />
 						<text class="message-time">{{ message.time }}</text>
 					</view>
-					<image class="avatar" :src="message.avatar"></image>
+					<image class="avatar" :src="message.avatar" @click="toMyHome"></image>
 				</view>
 				<view v-else class="message-left">
-					<image class="avatar" :src="message.avatar"></image>
+					<image class="avatar" :src="message.avatar" @click="toOtherHome"></image>
 					<view class="message-content-left">
 						<text class="message-text">{{ message.content }}</text><br />
 						<text class="message-ltime">{{ message.time }}</text>
@@ -101,6 +101,19 @@
 		// 添加更多聊天记录...
 	];
 	let inputText = ref('');
+
+	function toOtherHome() {
+		uni.navigateTo({
+			url: '/pages/otherPeapleHome/otherPeapleHome'
+		})
+	}
+
+	function toMyHome() {
+		uni.switchTab({
+			url: '/pages/my/my',
+
+		})
+	}
 </script>
 
 <style lang="scss">

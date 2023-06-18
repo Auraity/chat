@@ -1,1 +1,1 @@
-<view></view>
+<view class="container"><view class="search-bar"><image class="search-icon" src="/static/icon/search.png"></image><input class="search-input" type="text" placeholder="请输入搜索内容" bindinput="{{a}}"/><button class="search-btn" bindtap="{{b}}">搜索</button></view><add-contact u-i="d4e7210c-0" bind:__l="__l"></add-contact></view>

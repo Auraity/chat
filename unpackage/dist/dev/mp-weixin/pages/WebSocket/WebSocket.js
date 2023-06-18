@@ -73,6 +73,16 @@ const _sfc_main = {
       // 添加更多聊天记录...
     ];
     let inputText = common_vendor.ref("");
+    function toOtherHome() {
+      common_vendor.index.navigateTo({
+        url: "/pages/otherPeapleHome/otherPeapleHome"
+      });
+    }
+    function toMyHome() {
+      common_vendor.index.switchTab({
+        url: "/pages/my/my"
+      });
+    }
     return (_ctx, _cache) => {
       return {
         a: common_vendor.f(messages, (message, index, i0) => {
@@ -81,13 +91,15 @@ const _sfc_main = {
           }, message.sender === "me" ? {
             b: common_vendor.t(message.content),
             c: common_vendor.t(message.time),
-            d: message.avatar
+            d: message.avatar,
+            e: common_vendor.o(toMyHome, index)
           } : {
-            e: message.avatar,
-            f: common_vendor.t(message.content),
-            g: common_vendor.t(message.time)
+            f: message.avatar,
+            g: common_vendor.o(toOtherHome, index),
+            h: common_vendor.t(message.content),
+            i: common_vendor.t(message.time)
           }, {
-            h: index
+            j: index
           });
         }),
         b: common_vendor.unref(inputText),

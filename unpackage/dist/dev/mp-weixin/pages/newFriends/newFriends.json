@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "新的朋友",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "new-friends": "../../components/newFriends/newFriends"
+  }
+}

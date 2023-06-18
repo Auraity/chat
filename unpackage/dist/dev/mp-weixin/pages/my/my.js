@@ -1,52 +1,43 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const _sfc_main = {
-  data() {
-    return {
-      infoItems: [
-        {
-          label: "用户名",
-          value: "小明"
-        },
-        {
-          label: "邮箱",
-          value: "123@123.com"
-        },
-        {
-          label: "个性签名",
-          value: "我就是我，不一样的烟火"
-        },
-        {
-          label: "",
-          value: "我的朋友圈"
-        },
-        {
-          label: "",
-          value: "修改密码"
-        },
-        {
-          label: "",
-          value: "退出登录"
-        }
-      ]
-    };
-  },
-  methods: {
-    navigateToEdit(label) {
-      console.log("跳转到编辑页面", label);
+  __name: "my",
+  setup(__props) {
+    function toMyTrends() {
+      common_vendor.index.navigateTo({
+        url: "/pages/myTrends/myTrends"
+      });
     }
+    function alterUN() {
+      common_vendor.index.navigateTo({
+        url: "/pages/alterUserName/alterUserName"
+      });
+    }
+    function toAlterSign() {
+      common_vendor.index.navigateTo({
+        url: "/pages/alterSign/alterSign"
+      });
+    }
+    function alterPwd() {
+      common_vendor.index.navigateTo({
+        url: "/pages/alterPassword/alterPassword"
+      });
+    }
+    function exit() {
+      common_vendor.index.reLaunch({
+        url: "/pages/login/login"
+      });
+    }
+    return (_ctx, _cache) => {
+      return {
+        a: common_vendor.o(alterUN),
+        b: common_vendor.o(toAlterSign),
+        c: common_vendor.o(toMyTrends),
+        d: common_vendor.o(alterPwd),
+        e: common_vendor.o(exit)
+      };
+    };
   }
 };
-function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-  return {
-    a: common_vendor.f($data.infoItems, (item, k0, i0) => {
-      return {
-        a: common_vendor.t(item.label),
-        b: common_vendor.t(item.value),
-        c: item.label
-      };
-    })
-  };
-}
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/HXproject/Chat/pages/my/my.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/HXproject/Chat/pages/my/my.vue"]]);
 wx.createPage(MiniProgramPage);

@@ -1,1 +1,1 @@
-<view class="card"><image class="thumbnail" src="/static/logo.png"/><view class="content"><text class="title"> 姓名 </text><view/><text class="description"> description </text></view></view>
+<view class="container"><view class="card"><image class="thumbnail" src="/static/logo.png"/><view class="content"><text class="title"> 姓名 </text><view/><text class="description"> description </text></view><view class="msgDate"><text>2023-6-18 10:00</text></view></view></view>

@@ -15,6 +15,12 @@ if (!Math) {
   "./pages/forgetPwd/forgetPwd.js";
   "./pages/searchPage/searchPage.js";
   "./pages/WebSocket/WebSocket.js";
+  "./pages/newFriends/newFriends.js";
+  "./pages/otherPeapleHome/otherPeapleHome.js";
+  "./pages/hisTrends/hisTrends.js";
+  "./pages/alterUserName/alterUserName.js";
+  "./pages/alterSign/alterSign.js";
+  "./pages/alterPassword/alterPassword.js";
 }
 const _sfc_main = {
   onLaunch: function() {

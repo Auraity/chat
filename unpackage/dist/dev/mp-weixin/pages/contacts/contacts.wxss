@@ -25,18 +25,25 @@
 /* 文章场景相关 */
 .container .search.data-v-90a1bbf6 {
   display: flex;
+  height: 75rpx;
+  line-height: 75rpx;
+  align-items: center;
+  justify-content: center;
 }
-.container .search input.data-v-90a1bbf6 {
-  pointer-events: none;
-  width: 600rpx;
-  height: 80rpx;
-  padding: 10rpx;
-  border: 1rpx solid #dddddd;
+.container .search .inp button.data-v-90a1bbf6 {
+  width: 650rpx;
+  text-align: left;
+  height: 75rpx;
+  line-height: 75rpx;
+  color: #ccc;
   background-color: #f4f4f4;
   font-size: 24rpx;
 }
-.container .search button.data-v-90a1bbf6 {
+.container .search .btn button.data-v-90a1bbf6 {
+  line-height: 75rpx;
+  height: 75rpx;
   width: 100rpx;
+  margin: 0 10rpx;
 }
 .container .messageList.data-v-90a1bbf6 {
   margin-top: 30rpx;

@@ -1,0 +1,1 @@
+<view class="container"><view wx:for="{{a}}" wx:for-item="i" wx:key="b"><trends-list-cop u-i="{{i.a}}" bind:__l="__l"></trends-list-cop></view></view>

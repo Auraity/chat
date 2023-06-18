@@ -12,7 +12,13 @@
     "pages/ChangePwd/ChangePwd",
     "pages/forgetPwd/forgetPwd",
     "pages/searchPage/searchPage",
-    "pages/WebSocket/WebSocket"
+    "pages/WebSocket/WebSocket",
+    "pages/newFriends/newFriends",
+    "pages/otherPeapleHome/otherPeapleHome",
+    "pages/hisTrends/hisTrends",
+    "pages/alterUserName/alterUserName",
+    "pages/alterSign/alterSign",
+    "pages/alterPassword/alterPassword"
   ],
   "window": {
     "navigationBarTextStyle": "black",

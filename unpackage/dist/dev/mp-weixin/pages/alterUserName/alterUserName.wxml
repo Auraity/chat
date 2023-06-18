@@ -1,0 +1,1 @@
+<view class="container"><input class="input" type="text" placeholder="请输入新的用户名" value="{{a}}" bindinput="{{b}}"/><button class="btn" bindtap="{{c}}">保存</button></view>

@@ -7,51 +7,70 @@
 
 		<!-- 个人信息列表 -->
 		<view class="info-list">
-			<view class="info-item" v-for="item in infoItems" :key="item.label">
-				<text class="info-label">{{ item.label }}</text>
-				<text class="info-value">{{ item.value }}</text>
+			<view class="info-item">
+				<text class="info-label">邮箱</text>
+				<text class="info-value">123@123.com</text>
+			</view>
+			<view class="info-item" @click="alterUN">
+				<text class="info-label">用户名</text>
+				<text class="info-value">小明</text>
+				<image class="arrow-icon" src="/static/arrowRight.png"></image>
+			</view>
+
+			<view class="info-item" @click="toAlterSign">
+				<text class="info-label">个性签名</text>
+				<text class="info-value">啦啦啦啦啦啦</text>
+				<image class="arrow-icon" src="/static/arrowRight.png"></image>
+			</view>
+			<view class="info-item" @click="toMyTrends">
+				<text class="info-label"></text>
+				<text class="info-value">我的朋友圈</text>
+				<image class="arrow-icon" src="/static/arrowRight.png"></image>
+			</view>
+			<view class="info-item" @click="alterPwd">
+				<text class="info-label"></text>
+				<text class="info-value">修改密码</text>
+				<image class="arrow-icon" src="/static/arrowRight.png"></image>
+			</view>
+			<view class="info-item" @click="exit">
+				<text class="info-label"></text>
+				<text class="info-value">退出登录</text>
 				<image class="arrow-icon" src="/static/arrowRight.png"></image>
 			</view>
 		</view>
 	</view>
 </template>
 
-<script>
-	export default {
-		data() {
-			return {
-				infoItems: [{
-						label: "用户名",
-						value: "小明"
-					}, {
-						label: "邮箱",
-						value: "123@123.com"
-					}, {
-						label: "个性签名",
-						value: "我就是我，不一样的烟火"
-					},
-					{
-						label: "",
-						value: "我的朋友圈"
-					},
-					{
-						label: "",
-						value: "修改密码"
-					},
-					{
-						label: "",
-						value: "退出登录"
-					}
-				]
-			};
-		},
-		methods: {
-			navigateToEdit(label) {
-				// 导航到编辑页面，可根据需要进行跳转处理
-				console.log("跳转到编辑页面", label);
-			}
-		}
-	};
+<script setup>
+	function toMyTrends() {
+		uni.navigateTo({
+			url: '/pages/myTrends/myTrends'
+		})
+	}
+
+	function alterUN() {
+		uni.navigateTo({
+			url: '/pages/alterUserName/alterUserName'
+		})
+	}
+
+	function toAlterSign() {
+		uni.navigateTo({
+			url: '/pages/alterSign/alterSign'
+		})
+	}
+
+	function alterPwd() {
+		uni.navigateTo({
+			url: '/pages/alterPassword/alterPassword'
+		})
+	}
+
+	function exit() {
+		uni.reLaunch({
+			url: '/pages/login/login'
+		})
+	}
 </script>
 
 <style>

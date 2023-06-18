@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "添加好友",
   "enablePullDownRefresh": false,
-  "usingComponents": {}
+  "usingComponents": {
+    "add-contact": "../../components/addContact/addContact"
+  }
 }

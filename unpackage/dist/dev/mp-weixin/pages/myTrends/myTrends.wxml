@@ -1,1 +1,1 @@
-<view></view>
+<view class="card"><image class="thumbnail" src="/static/logo.png"/><view class="content"><text class="title"> 姓名 </text><view/><text class="description"> descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription </text><view/><view class="operation"><text class="publishedDate">发布时间：</text><text class="deleteTrend">删除</text></view></view></view>

@@ -38,14 +38,20 @@
 	}
 
 	function login() {
+		formCheck();
 		uni.reLaunch({
 			url: '/pages/index/index'
 		})
 		console.log("登录");
 	}
+
+	// 表单校验
+	function formCheck() {
+
+	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	page {
 		background-color: #f4f4f4;
 	}
