@@ -9,8 +9,78 @@ const _sfc_main = {
     let rePwd = common_vendor.ref("");
     let isCodeSent = common_vendor.ref(false);
     let countdown = common_vendor.ref(60);
-    function login() {
-      console.log("登录");
+    function confirm() {
+      formCheck();
+      if (isValid.value) {
+        common_vendor.index.reLaunch({
+          url: "/pages/login/login"
+        });
+      }
+    }
+    var emailRegex = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+    var pwdRegex = /^.{4,}$/;
+    var codeRegex = /^[A-Za-z0-9]{4}$/;
+    function formCheck() {
+      if (email.value === "" || email.value === null) {
+        isValid.value = false;
+        common_vendor.index.showToast({
+          title: "邮箱不能为空",
+          icon: "none"
+        });
+      } else {
+        if (!emailRegex.test(email.value)) {
+          isValid.value = false;
+          common_vendor.index.showToast({
+            title: "邮箱输入格式不正确",
+            icon: "none"
+          });
+        }
+      }
+      if (code.value === "" || code.value === null) {
+        isValid.value = false;
+        common_vendor.index.showToast({
+          title: "验证码不能为空",
+          icon: "none"
+        });
+      } else {
+        if (!codeRegex.test(code.value)) {
+          isValid.value = false;
+          common_vendor.index.showToast({
+            title: "验证码输入不正确",
+            icon: "none"
+          });
+        }
+      }
+      if (pwd.value === "" || pwd.value === null) {
+        isValid.value = false;
+        common_vendor.index.showToast({
+          title: "密码不能为空",
+          icon: "none"
+        });
+      } else {
+        if (!pwdRegex.test(pwd.value)) {
+          isValid.value = false;
+          common_vendor.index.showToast({
+            title: "密码至少输入4位",
+            icon: "none"
+          });
+        }
+      }
+      if (rePwd.value === "" || rePwd.value === null) {
+        isValid.value = false;
+        common_vendor.index.showToast({
+          title: "确认密码不能为空",
+          icon: "none"
+        });
+      } else {
+        if (rePwd.value !== pwd.value) {
+          isValid.value = false;
+          common_vendor.index.showToast({
+            title: "确认密码与密码不相同",
+            icon: "none"
+          });
+        }
+      }
     }
     function sendCode() {
       countdown.value = 60;
@@ -40,7 +110,7 @@ const _sfc_main = {
         j: common_vendor.o(($event) => common_vendor.isRef(pwd) ? pwd.value = $event.detail.value : pwd = $event.detail.value),
         k: common_vendor.unref(rePwd),
         l: common_vendor.o(($event) => common_vendor.isRef(rePwd) ? rePwd.value = $event.detail.value : rePwd = $event.detail.value),
-        m: common_vendor.o(login)
+        m: common_vendor.o(confirm)
       });
     };
   }

@@ -36,18 +36,56 @@
 			url: '/pages/forgetPwd/forgetPwd'
 		})
 	}
+	let isValid = ref(true)
 
 	function login() {
-		formCheck();
-		uni.reLaunch({
-			url: '/pages/index/index'
-		})
-		console.log("登录");
+		formCheck()
+		if (isValid.value) {
+			uni.reLaunch({
+				url: '/pages/index/index'
+			})
+		}
 	}
 
 	// 表单校验
-	function formCheck() {
+	var emailRegex = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
+	var pwdRegex = /^.{4,}$/;
 
+	function formCheck() {
+		// 邮箱校验		
+		if (email.value === '' || email.value === null) {
+			isValid.value = false;
+			uni.showToast({
+				title: '邮箱不能为空',
+				icon: 'none'
+			});
+		} else {
+			if (!emailRegex.test(email.value)) {
+				isValid.value = false;
+				uni.showToast({
+					title: '邮箱输入的格式不正确',
+					icon: 'none'
+				});
+			}
+		}
+
+		// 密码校验
+		if (pwd.value === '' || pwd.value === null) {
+			isValid.value = false;
+			uni.showToast({
+				title: '密码不能为空',
+				icon: 'none'
+			});
+		} else {
+			if (!pwdRegex.test(pwd.value)) {
+				isValid.value = false;
+				uni.showToast({
+					title: '密码至少输入4位',
+					icon: 'none'
+				});
+			}
+
+		}
 	}
 </script>
 

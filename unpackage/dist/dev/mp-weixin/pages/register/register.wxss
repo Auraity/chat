@@ -23,28 +23,28 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-page.data-v-bac4a35d {
+page {
   background-color: #f4f4f4;
 }
-.container.data-v-bac4a35d {
+.container {
   display: flex;
   flex-direction: column;
   margin-top: 150rpx;
   align-items: center;
   justify-content: center;
 }
-.container .input-email.data-v-bac4a35d {
+.container .input-email {
   width: 500rpx;
   justify-content: center;
   display: flex;
 }
-.container .input-email .emailInput.data-v-bac4a35d {
+.container .input-email .emailInput {
   height: 40rpx;
   margin: 30rpx 0;
   border-bottom: 1rpx solid #ccc;
   font-size: 24rpx;
 }
-.container .input-email .codeCli.data-v-bac4a35d {
+.container .input-email .codeCli {
   width: 30%;
   background-color: #0aa3b4;
   color: #fff;
@@ -54,7 +54,7 @@ page.data-v-bac4a35d {
   cursor: pointer;
   height: 70rpx;
 }
-.container .input-email .codeSecond.data-v-bac4a35d {
+.container .input-email .codeSecond {
   width: 30%;
   background-color: darkgray;
   color: #fff;
@@ -64,17 +64,17 @@ page.data-v-bac4a35d {
   height: 70rpx;
   pointer-events: none;
 }
-.container .input-container.data-v-bac4a35d {
+.container .input-container {
   margin-bottom: 20rpx;
   width: 500rpx;
 }
-.container .input-container .input.data-v-bac4a35d {
+.container .input-container .input {
   height: 40rpx;
   margin: 30rpx 0;
   border-bottom: 1rpx solid #ccc;
   font-size: 24rpx;
 }
-.container .login-button.data-v-bac4a35d {
+.container .login-button {
   width: 80%;
   margin-top: 50rpx;
   height: 80rpx;

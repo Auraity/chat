@@ -4,8 +4,32 @@ const _sfc_main = {
   __name: "alterSign",
   setup(__props) {
     let newSign = common_vendor.ref();
+    let isValid = common_vendor.ref(true);
     function changeSign() {
-      console.log("新用户名:", this.newSign);
+      formCheck();
+      if (isValid.value) {
+        common_vendor.index.switchTab({
+          url: "/pages/my/my"
+        });
+      }
+    }
+    var signRegex = /^.{,32}$/;
+    function formCheck() {
+      if (newSign.value === "" || newSign.value === null) {
+        isValid.value = false;
+        common_vendor.index.showToast({
+          title: "不能为空",
+          icon: "none"
+        });
+      } else {
+        if (!signRegex.test(newSign.value)) {
+          isValid.value = false;
+          common_vendor.index.showToast({
+            title: "内容不能超过1024个字符",
+            icon: "none"
+          });
+        }
+      }
     }
     return (_ctx, _cache) => {
       return {

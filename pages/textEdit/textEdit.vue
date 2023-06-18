@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		<textarea v-model="content" class="content-input" placeholder="请输入内容..." maxlength="200"></textarea>
+		<textarea v-model="content" class="content-input" placeholder="请输入1024个字符以内的内容..." maxlength="200"></textarea>
 		<view class="button-container">
 			<button class="publish-button" @click="publish">发布</button>
 		</view>
@@ -12,10 +12,39 @@
 		ref
 	} from "vue";
 	let content = ref('')
+	let isValid = ref(true)
+
 
 	function publish() {
-		// 处理发布逻辑
-		console.log('发布内容:', content.value);
+		formCheck()
+		if (isValid.value) {
+			uni.switchTab({
+				url: '/pages/trends/trends'
+			})
+		}
+	}
+
+	// 表单验证
+	var textRegex = /^.{,1024}$/;
+
+	function formCheck() {
+		// 密码校验
+		if (content.value === '' || content.value === null) {
+			isValid.value = false;
+			uni.showToast({
+				title: '不能为空',
+				icon: 'none'
+			});
+		} else {
+			if (!textRegex.test(content.value)) {
+				isValid.value = false;
+				uni.showToast({
+					title: '内容不能超过1024个字符',
+					icon: 'none'
+				});
+			}
+
+		}
 	}
 </script>
 

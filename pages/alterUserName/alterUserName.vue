@@ -10,12 +10,40 @@
 		ref
 	} from "vue";
 
-	let newUsername = ref()
+	let newUsername = ref('')
+	let isValid = ref(true)
 
 	function changeUsername() {
 		// 发送请求到服务器更改用户名
 		// 在这里可以添加相应的逻辑，比如校验用户名是否合法等
-		console.log('新用户名:', this.newUsername);
+		formCheck()
+		if (isValid.value) {
+			uni.switchTab({
+				url: '/pages/my/my'
+			})
+		}
+	}
+
+	// 表单验证
+	var usernameRegex = /^.{2,16}$/;
+
+	function formCheck() {
+		// 用户名校验
+		if (user.value === '' || user.value === null) {
+			isValid.value = false;
+			uni.showToast({
+				title: '用户名不能为空',
+				icon: 'none'
+			});
+		} else {
+			if (!usernameRegex.test(user.value)) {
+				isValid.value = false;
+				uni.showToast({
+					title: '用户名为2~16位任意字符',
+					icon: 'none'
+				});
+			}
+		}
 	}
 </script>
 

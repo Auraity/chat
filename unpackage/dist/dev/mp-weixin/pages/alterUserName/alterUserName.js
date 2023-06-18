@@ -3,9 +3,33 @@ const common_vendor = require("../../common/vendor.js");
 const _sfc_main = {
   __name: "alterUserName",
   setup(__props) {
-    let newUsername = common_vendor.ref();
+    let newUsername = common_vendor.ref("");
+    let isValid = common_vendor.ref(true);
     function changeUsername() {
-      console.log("新用户名:", this.newUsername);
+      formCheck();
+      if (isValid.value) {
+        common_vendor.index.switchTab({
+          url: "/pages/my/my"
+        });
+      }
+    }
+    var usernameRegex = /^.{2,16}$/;
+    function formCheck() {
+      if (user.value === "" || user.value === null) {
+        isValid.value = false;
+        common_vendor.index.showToast({
+          title: "用户名不能为空",
+          icon: "none"
+        });
+      } else {
+        if (!usernameRegex.test(user.value)) {
+          isValid.value = false;
+          common_vendor.index.showToast({
+            title: "用户名为2~16位任意字符",
+            icon: "none"
+          });
+        }
+      }
     }
     return (_ctx, _cache) => {
       return {

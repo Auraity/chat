@@ -11,11 +11,39 @@
 	} from "vue";
 
 	let newSign = ref()
+	let isValid = ref(true)
 
 	function changeSign() {
 		// 发送请求到服务器更改用户名
 		// 在这里可以添加相应的逻辑，比如校验用户名是否合法等
-		console.log('新用户名:', this.newSign);
+		formCheck()
+		if (isValid.value) {
+			uni.switchTab({
+				url: '/pages/my/my'
+			})
+		}
+	}
+	// 表单验证
+	var signRegex = /^.{,32}$/;
+
+	function formCheck() {
+		// 密码校验
+		if (newSign.value === '' || newSign.value === null) {
+			isValid.value = false;
+			uni.showToast({
+				title: '不能为空',
+				icon: 'none'
+			});
+		} else {
+			if (!signRegex.test(newSign.value)) {
+				isValid.value = false;
+				uni.showToast({
+					title: '内容不能超过1024个字符',
+					icon: 'none'
+				});
+			}
+
+		}
 	}
 </script>
 

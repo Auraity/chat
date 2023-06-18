@@ -14,7 +14,7 @@
 		<view class="input-container">
 			<input v-model="rePwd" type="password" placeholder="请输入确认密码" class="input" />
 		</view>
-		<button @click="login" class="login-button">确认</button>
+		<button @click="confirm" class="login-button">确认</button>
 	</view>
 </template>
 
@@ -29,9 +29,93 @@
 	let isCodeSent = ref(false)
 	let countdown = ref(60)
 
-	function login() {
-		console.log("登录");
+	function confirm() {
+		formCheck()
+		if (isValid.value) {
+			uni.reLaunch({
+				url: '/pages/login/login'
+			})
+		}
 	}
+
+	// 表单校验
+	var usernameRegex = /^.{2,16}$/;
+	var emailRegex = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+	var pwdRegex = /^.{4,}$/;
+	var codeRegex = /^[A-Za-z0-9]{4}$/;
+
+
+	function formCheck() {
+		// 邮箱校验		
+		if (email.value === '' || email.value === null) {
+			isValid.value = false;
+			uni.showToast({
+				title: '邮箱不能为空',
+				icon: 'none'
+			});
+		} else {
+			if (!emailRegex.test(email.value)) {
+				isValid.value = false;
+				uni.showToast({
+					title: '邮箱输入格式不正确',
+					icon: 'none'
+				});
+			}
+		}
+
+		// 验证码校验
+		if (code.value === '' || code.value === null) {
+			isValid.value = false;
+			uni.showToast({
+				title: '验证码不能为空',
+				icon: 'none'
+			});
+		} else {
+			if (!codeRegex.test(code.value)) {
+				isValid.value = false;
+				uni.showToast({
+					title: '验证码输入不正确',
+					icon: 'none'
+				});
+			}
+		}
+
+		// 密码校验
+		if (pwd.value === '' || pwd.value === null) {
+			isValid.value = false;
+			uni.showToast({
+				title: '密码不能为空',
+				icon: 'none'
+			});
+		} else {
+			if (!pwdRegex.test(pwd.value)) {
+				isValid.value = false;
+				uni.showToast({
+					title: '密码至少输入4位',
+					icon: 'none'
+				});
+			}
+
+		}
+
+		// 确认密码校验
+		if (rePwd.value === '' || rePwd.value === null) {
+			isValid.value = false;
+			uni.showToast({
+				title: '确认密码不能为空',
+				icon: 'none'
+			});
+		} else {
+			if (rePwd.value !== pwd.value) {
+				isValid.value = false;
+				uni.showToast({
+					title: '确认密码与密码不相同',
+					icon: 'none'
+				});
+			}
+		}
+	}
+
 
 	function sendCode() {
 		// console.log("发送验证码");

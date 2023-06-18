@@ -15,11 +15,48 @@ const _sfc_main = {
         url: "/pages/forgetPwd/forgetPwd"
       });
     }
+    let isValid = common_vendor.ref(true);
     function login() {
-      common_vendor.index.reLaunch({
-        url: "/pages/index/index"
-      });
-      console.log("登录");
+      formCheck();
+      if (isValid.value) {
+        common_vendor.index.reLaunch({
+          url: "/pages/index/index"
+        });
+      }
+    }
+    var emailRegex = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
+    var pwdRegex = /^.{4,}$/;
+    function formCheck() {
+      if (email.value === "" || email.value === null) {
+        isValid.value = false;
+        common_vendor.index.showToast({
+          title: "邮箱不能为空",
+          icon: "none"
+        });
+      } else {
+        if (!emailRegex.test(email.value)) {
+          isValid.value = false;
+          common_vendor.index.showToast({
+            title: "邮箱输入的格式不正确",
+            icon: "none"
+          });
+        }
+      }
+      if (pwd.value === "" || pwd.value === null) {
+        isValid.value = false;
+        common_vendor.index.showToast({
+          title: "密码不能为空",
+          icon: "none"
+        });
+      } else {
+        if (!pwdRegex.test(pwd.value)) {
+          isValid.value = false;
+          common_vendor.index.showToast({
+            title: "密码至少输入4位",
+            icon: "none"
+          });
+        }
+      }
     }
     return (_ctx, _cache) => {
       return {
