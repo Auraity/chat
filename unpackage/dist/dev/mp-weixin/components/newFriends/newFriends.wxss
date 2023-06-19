@@ -66,3 +66,7 @@
   background-color: #f4f4f4;
   color: #0aa3b4;
 }
+.card .cright .text {
+  color: #ccc;
+  font-size: 30rpx;
+}

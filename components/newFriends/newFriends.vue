@@ -1,23 +1,47 @@
 <template>
-	<view class="card">
+	<view class="card" v-for="(item,i) in props.newFriDa" :key="item.userId">
 		<view class="cleft">
-			<image class="thumbnail" src="/static/logo.png" />
+			<image class="thumbnail" :src="item.friendHeadImgUrl" />
 			<view class="content">
-				<text class="title"> 姓名 </text>
+				<text class="title"> {{item.friendName}} </text>
 			</view>
 		</view>
+		<!-- status：
+				0等待验证（如果friendId是自己则显示添加拒绝按钮,如果不是则显示按钮）
+				1已添加
+				2已拒绝（friendId是自己表示别人加我）和未通过 
+		-->
 		<view class="cright">
-			<view v-if="1" class="allbtn">
+			<view v-if="item.status==0&&item.friendId!=item.userId" class="allbtn">
 				<button class="btn agreenbtn">同意</button>
 				<button class="btn refusebtn">拒绝</button>
 			</view>
-			<text v-else>已同意</text>
+			<view v-else>
+				<text class="text">{{item.statusDescription}}</text>
+			</view>
 		</view>
 	</view>
 </template>
 
 
 <script setup>
+	import {
+		defineProps,
+		ref
+	} from 'vue'
+	// 获取父组件的值
+	const props = defineProps(['newFriDa'])
+	// console.log(props.newFriDa, "666");
+
+	// 获取自己的id
+	let userId = ref()
+	uni.getStorage({
+		key: 'userId',
+		success: (res) => {
+			// console.log(res, "id");
+			userId.value = res
+		}
+	})
 </script>
 
 <style lang="scss">
@@ -75,6 +99,11 @@
 					background-color: #f4f4f4;
 					color: #0aa3b4;
 				}
+			}
+
+			.text {
+				color: #ccc;
+				font-size: 30rpx;
 			}
 		}
 	}
