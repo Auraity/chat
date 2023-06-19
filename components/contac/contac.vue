@@ -1,15 +1,22 @@
 <template>
-	<view class="card">
-		<image class="thumbnail" src="/static/logo.png" />
+	<view class="card" v-for='(item,i) in props.cotdata' :key="item.friendId">
+		<image class="thumbnail" :src="item.friendHeadImgUrl" />
 
 		<view class="content">
-			<text class="title"> 姓名 </text>
+			<text class="title">{{item.friendName}}</text>
 		</view>
 	</view>
 </template>
 
 
 <script setup>
+	import {
+		defineProps,
+		ref
+	} from 'vue'
+	// 获取父组件的值
+	const props = defineProps(['cotdata'])
+	// console.log(props.cotdata, "666");
 </script>
 
 <style lang="scss">

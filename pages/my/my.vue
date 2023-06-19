@@ -2,24 +2,24 @@
 	<view class="container">
 		<!-- 头部个人信息 -->
 		<view class="header">
-			<image class="avatar" src="/static/logo.png"></image>
+			<image class="avatar" :src="myDa.friendHeadImgUrl"></image>
 		</view>
 
 		<!-- 个人信息列表 -->
 		<view class="info-list">
 			<view class="info-item">
 				<text class="info-label">邮箱</text>
-				<text class="info-value">123@123.com</text>
+				<text class="info-value">{{myDa.friendEmail}}</text>
 			</view>
 			<view class="info-item" @click="alterUN">
 				<text class="info-label">用户名</text>
-				<text class="info-value">小明</text>
+				<text class="info-value">{{myDa.friendName}}</text>
 				<image class="arrow-icon" src="/static/arrowRight.png"></image>
 			</view>
 
 			<view class="info-item" @click="toAlterSign">
 				<text class="info-label">个性签名</text>
-				<text class="info-value">啦啦啦啦啦啦</text>
+				<text class="info-value">{{myDa.friendIntroduction}}</text>
 				<image class="arrow-icon" src="/static/arrowRight.png"></image>
 			</view>
 			<view class="info-item" @click="toMyTrends">
@@ -42,6 +42,13 @@
 </template>
 
 <script setup>
+	import {
+		ref
+	} from "vue";
+	import {
+		my
+	} from '../../api/tabbar.js'
+
 	function toMyTrends() {
 		uni.navigateTo({
 			url: '/pages/myTrends/myTrends'
@@ -70,6 +77,28 @@
 		uni.reLaunch({
 			url: '/pages/login/login'
 		})
+	}
+	uni.getStorage({
+		key: 'userId',
+		success: (res) => {
+			// console.log(res, "id");
+			me(res.data)
+		}
+	})
+	// 个人信息渲染
+	let myDa = ref({})
+	const me = async (id) => {
+		const res = await my(id);
+		// console.log(res, 111);
+		if (res.data.code == "200" || res.data.code == 200) {
+			myDa.value = res.data.data;
+			// console.log(myDa.value, 222);
+		} else {
+			uni.showToast({
+				title: '数据获取失败',
+				icon: 'none'
+			});
+		}
 	}
 </script>
 

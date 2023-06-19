@@ -21,7 +21,6 @@ const _sfc_main = {
     }
     var usernameRegex = /^.{2,16}$/;
     var emailRegex = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-    var pwdRegex = /^.{4,}$/;
     var codeRegex = /^[A-Za-z0-9]{4}$/;
     function formCheck() {
       if (user.value === "" || user.value === null) {
@@ -30,6 +29,7 @@ const _sfc_main = {
           title: "用户名不能为空",
           icon: "none"
         });
+        return;
       } else {
         if (!usernameRegex.test(user.value)) {
           isValid.value = false;
@@ -37,6 +37,7 @@ const _sfc_main = {
             title: "用户名为2~16位任意字符",
             icon: "none"
           });
+          return;
         }
       }
       if (email.value === "" || email.value === null) {
@@ -45,6 +46,7 @@ const _sfc_main = {
           title: "邮箱不能为空",
           icon: "none"
         });
+        return;
       } else {
         if (!emailRegex.test(email.value)) {
           isValid.value = false;
@@ -52,6 +54,7 @@ const _sfc_main = {
             title: "邮箱输入格式不正确",
             icon: "none"
           });
+          return;
         }
       }
       if (code.value === "" || code.value === null) {
@@ -60,6 +63,7 @@ const _sfc_main = {
           title: "验证码不能为空",
           icon: "none"
         });
+        return;
       } else {
         if (!codeRegex.test(code.value)) {
           isValid.value = false;
@@ -67,6 +71,7 @@ const _sfc_main = {
             title: "验证码输入不正确",
             icon: "none"
           });
+          return;
         }
       }
       if (pwd.value === "" || pwd.value === null) {
@@ -75,14 +80,7 @@ const _sfc_main = {
           title: "密码不能为空",
           icon: "none"
         });
-      } else {
-        if (!pwdRegex.test(pwd.value)) {
-          isValid.value = false;
-          common_vendor.index.showToast({
-            title: "密码至少输入4位",
-            icon: "none"
-          });
-        }
+        return;
       }
       if (rePwd.value === "" || rePwd.value === null) {
         isValid.value = false;
@@ -90,6 +88,7 @@ const _sfc_main = {
           title: "确认密码不能为空",
           icon: "none"
         });
+        return;
       } else {
         if (rePwd.value !== pwd.value) {
           isValid.value = false;

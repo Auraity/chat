@@ -29,6 +29,8 @@
 	let isCodeSent = ref(false)
 	let countdown = ref(60)
 
+	let isValid = ref(true)
+
 	function confirm() {
 		formCheck()
 		if (isValid.value) {
@@ -53,6 +55,7 @@
 				title: '邮箱不能为空',
 				icon: 'none'
 			});
+			return;
 		} else {
 			if (!emailRegex.test(email.value)) {
 				isValid.value = false;
@@ -60,6 +63,7 @@
 					title: '邮箱输入格式不正确',
 					icon: 'none'
 				});
+				return;
 			}
 		}
 
@@ -70,6 +74,7 @@
 				title: '验证码不能为空',
 				icon: 'none'
 			});
+			return;
 		} else {
 			if (!codeRegex.test(code.value)) {
 				isValid.value = false;
@@ -77,6 +82,7 @@
 					title: '验证码输入不正确',
 					icon: 'none'
 				});
+				return;
 			}
 		}
 
@@ -87,6 +93,7 @@
 				title: '密码不能为空',
 				icon: 'none'
 			});
+			return;
 		} else {
 			if (!pwdRegex.test(pwd.value)) {
 				isValid.value = false;
@@ -94,6 +101,7 @@
 					title: '密码至少输入4位',
 					icon: 'none'
 				});
+				return;
 			}
 
 		}
@@ -105,6 +113,7 @@
 				title: '确认密码不能为空',
 				icon: 'none'
 			});
+			return;
 		} else {
 			if (rePwd.value !== pwd.value) {
 				isValid.value = false;
@@ -115,7 +124,6 @@
 			}
 		}
 	}
-
 
 	function sendCode() {
 		// console.log("发送验证码");

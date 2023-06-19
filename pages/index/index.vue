@@ -3,15 +3,23 @@
 		<view class="search" @click="toSearch">
 			<input type="text" placeholder="     ※ 点击此处进行消息搜索" />
 		</view>
-		<view class="messageList" v-for="i in 10" :key="i">
+		<view class="messageList">
 			<view @click="enterSocket">
-				<messageListCop></messageListCop>
+				<messageListCop :msgdata='msgDa'></messageListCop>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script setup>
+	import {
+		ref
+	} from "vue";
+	import {
+		msg
+	} from '../../api/tabbar.js'
+
+
 	function toSearch() {
 		uni.navigateTo({
 			url: "/pages/searchPage/searchPage"
@@ -23,6 +31,22 @@
 			url: "/pages/WebSocket/WebSocket"
 		})
 	}
+	// 消息列表渲染
+	let msgDa = ref([])
+	const msgApi = async () => {
+		const res = await msg();
+		// console.log(res, 111);
+		if (res.data.code == "200" || res.data.code == 200) {
+			msgDa.value = res.data.data.list;
+			// console.log(msgDa.value, 222);
+		} else {
+			uni.showToast({
+				title: '数据获取失败',
+				icon: 'none'
+			});
+		}
+	}
+	msgApi()
 </script>
 
 <style lang="scss" scoped>

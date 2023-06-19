@@ -1,8 +1,28 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const _sfc_main = {};
-function _sfc_render(_ctx, _cache) {
-  return {};
-}
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/HXproject/Chat/components/messageListCop/messageListCop.vue"]]);
+const _sfc_main = {
+  __name: "messageListCop",
+  props: ["msgdata"],
+  setup(__props) {
+    const props = __props;
+    common_vendor.ref("");
+    common_vendor.ref("");
+    common_vendor.ref("");
+    common_vendor.ref("");
+    return (_ctx, _cache) => {
+      return {
+        a: common_vendor.f(props.msgdata, (item, i, i0) => {
+          return {
+            a: item.friends[0].friendHeadImgUrl,
+            b: common_vendor.t(item.friends[0].friendName),
+            c: common_vendor.t(item.lastMessage),
+            d: common_vendor.t(item.lastActiveTime),
+            e: item.sessionId
+          };
+        })
+      };
+    };
+  }
+};
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/HXproject/Chat/components/messageListCop/messageListCop.vue"]]);
 wx.createComponent(Component);

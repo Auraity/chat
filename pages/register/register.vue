@@ -58,6 +58,7 @@
 				title: '用户名不能为空',
 				icon: 'none'
 			});
+			return;
 		} else {
 			if (!usernameRegex.test(user.value)) {
 				isValid.value = false;
@@ -65,7 +66,9 @@
 					title: '用户名为2~16位任意字符',
 					icon: 'none'
 				});
+				return;
 			}
+
 		}
 
 		// 邮箱校验		
@@ -75,6 +78,7 @@
 				title: '邮箱不能为空',
 				icon: 'none'
 			});
+			return;
 		} else {
 			if (!emailRegex.test(email.value)) {
 				isValid.value = false;
@@ -82,7 +86,9 @@
 					title: '邮箱输入格式不正确',
 					icon: 'none'
 				});
+				return;
 			}
+
 		}
 
 		// 验证码校验
@@ -92,6 +98,7 @@
 				title: '验证码不能为空',
 				icon: 'none'
 			});
+			return;
 		} else {
 			if (!codeRegex.test(code.value)) {
 				isValid.value = false;
@@ -99,7 +106,9 @@
 					title: '验证码输入不正确',
 					icon: 'none'
 				});
+				return;
 			}
+
 		}
 
 		// 密码校验
@@ -109,15 +118,7 @@
 				title: '密码不能为空',
 				icon: 'none'
 			});
-		} else {
-			if (!pwdRegex.test(pwd.value)) {
-				isValid.value = false;
-				uni.showToast({
-					title: '密码至少输入4位',
-					icon: 'none'
-				});
-			}
-
+			return;
 		}
 
 		// 确认密码校验
@@ -127,6 +128,7 @@
 				title: '确认密码不能为空',
 				icon: 'none'
 			});
+			return;
 		} else {
 			if (rePwd.value !== pwd.value) {
 				isValid.value = false;

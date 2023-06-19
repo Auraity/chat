@@ -19,6 +19,9 @@
 
 <script setup>
 	import {
+		log
+	} from '../../api/login.js'
+	import {
 		ref
 	} from 'vue';
 
@@ -38,12 +41,34 @@
 	}
 	let isValid = ref(true)
 
+	const loginApi = async () => {
+		const res = await log(email.value, pwd.value);
+		// console.log(res.data.code);
+		if (res.data.code == "200" || res.data.code == 200) {
+			uni.setStorage({
+				key: 'user',
+				data: res.data.data,
+			});
+			uni.setStorage({
+				key: 'userId',
+				data: 2,
+			});
+			uni.reLaunch({
+				url: '/pages/index/index'
+			});
+
+		} else {
+			uni.showToast({
+				title: '用户信息不正确',
+				icon: 'none'
+			});
+		}
+	}
+
 	function login() {
 		formCheck()
 		if (isValid.value) {
-			uni.reLaunch({
-				url: '/pages/index/index'
-			})
+			loginApi()
 		}
 	}
 
@@ -59,6 +84,7 @@
 				title: '邮箱不能为空',
 				icon: 'none'
 			});
+			return;
 		} else {
 			if (!emailRegex.test(email.value)) {
 				isValid.value = false;
@@ -66,6 +92,7 @@
 					title: '邮箱输入的格式不正确',
 					icon: 'none'
 				});
+				return;
 			}
 		}
 
@@ -76,15 +103,6 @@
 				title: '密码不能为空',
 				icon: 'none'
 			});
-		} else {
-			if (!pwdRegex.test(pwd.value)) {
-				isValid.value = false;
-				uni.showToast({
-					title: '密码至少输入4位',
-					icon: 'none'
-				});
-			}
-
 		}
 	}
 </script>

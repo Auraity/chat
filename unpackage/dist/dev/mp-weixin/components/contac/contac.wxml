@@ -1,1 +1,1 @@
-<view class="card"><image class="thumbnail" src="/static/logo.png"/><view class="content"><text class="title"> 姓名 </text></view></view>
+<view wx:for="{{a}}" wx:for-item="item" wx:key="c" class="card"><image class="thumbnail" src="{{item.a}}"/><view class="content"><text class="title">{{item.b}}</text></view></view>

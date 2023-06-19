@@ -209,7 +209,7 @@
 			height: 8vh;
 			background-color: white;
 			padding: 0 30rpx;
-			padding-bottom: 30rpx;
+			padding-bottom: 35rpx;
 			margin-bottom: 0px;
 
 			.input-field {

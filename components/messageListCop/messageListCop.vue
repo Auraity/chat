@@ -1,21 +1,33 @@
 <template>
-	<view class="container">
+	<view class="container" v-for="(item,i) in props.msgdata" :key="item.sessionId">
 		<view class="card">
-			<image class="thumbnail" src="/static/logo.png" />
+			<image class="thumbnail" :src="item.friends[0].friendHeadImgUrl" />
 			<view class="content">
-				<text class="title"> 姓名 </text><br />
-				<text class="description"> description </text>
+				<text class="title"> {{item.friends[0].friendName}} </text><br />
+				<text class="description"> {{item.lastMessage}} </text>
 			</view>
 			<view class="msgDate">
-				<text>2023-6-18 10:00</text>
+				<text>{{item.lastActiveTime}}</text>
 			</view>
 		</view>
-
 	</view>
 </template>
 
 
 <script setup>
+	import {
+		ref
+	} from "vue";
+	let headUrl = ref('');
+	let name = ref('');
+	let description = ref('');
+	let msgDate = ref('')
+
+	import {
+		defineProps
+	} from 'vue'
+	// 获取父组件的值
+	const props = defineProps(['msgdata'])
 </script>
 
 <style lang="scss">
@@ -30,7 +42,6 @@
 				height: 100rpx;
 				border-bottom: 1rpx solid #dddddd;
 			}
-
 
 			display: flex;
 			align-items: center;

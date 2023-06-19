@@ -9,17 +9,25 @@
 			</view>
 		</view>
 		<view @click="toNewFriends">
-			<contac></contac>
+			<contac :cotdata='addCot'></contac>
 		</view>
-		<view class="messageList" v-for="i in 10" :key="i">
+		<view class="messageList">
 			<view @click="toOtherHome">
-				<contac></contac>
+				<contac :cotdata='cotDa'></contac>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script setup>
+	import {
+		reactive,
+		ref
+	} from "vue";
+	import {
+		cot
+	} from '/api/tabbar.js'
+
 	function toSearch() {
 		uni.navigateTo({
 			url: "/pages/searchPage/searchPage"
@@ -43,6 +51,27 @@
 			url: '/pages/otherPeapleHome/otherPeapleHome'
 		})
 	}
+	let addCot = reactive([{
+		"friendId": 0,
+		"friendName": "添加好友",
+		"friendHeadImgUrl": "/static/addFriends.png"
+	}])
+
+	let cotDa = ref([])
+	const cotApi = async () => {
+		const res = await cot();
+		// console.log(res, 111);
+		if (res.data.code == "200" || res.data.code == 200) {
+			cotDa.value = res.data.data.list;
+			// console.log(cotDa.value, 222);
+		} else {
+			uni.showToast({
+				title: '数据获取失败',
+				icon: 'none'
+			});
+		}
+	}
+	cotApi()
 </script>
 
 <style lang="scss" scoped>
