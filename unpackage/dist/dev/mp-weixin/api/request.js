@@ -11,7 +11,7 @@ const request = (url, method, data) => {
           method,
           data,
           header: {
-            "JSESSIONID": res.data
+            "JSESSIONID": res.data.jsessionid
           },
           success: (res2) => {
             resolve(res2);

@@ -12,7 +12,7 @@
 				2已拒绝（friendId是自己表示别人加我）和未通过 
 		-->
 		<view class="cright">
-			<view v-if="item.status==0&&item.friendId==item.userId" class="allbtn">
+			<view v-if="item.status==0&&item.friendId==uId" class="allbtn">
 				<button class="btn agreenbtn">同意</button>
 				<button class="btn refusebtn">拒绝</button>
 			</view>
@@ -34,12 +34,13 @@
 	// console.log(props.newFriDa, "666");
 
 	// 获取自己的id
-	let userId = ref()
+	let uId = ref('')
 	uni.getStorage({
-		key: 'userId',
+		key: 'user',
 		success: (res) => {
-			// console.log(res, "id");
-			userId.value = res
+			console.log(res, "id");
+			uId.value = res.data.userId
+			console.log(uId.value);
 		}
 	})
 </script>

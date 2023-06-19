@@ -31,9 +31,9 @@ const _sfc_main = {
       });
     }
     common_vendor.index.getStorage({
-      key: "userId",
+      key: "user",
       success: (res) => {
-        me(res.data);
+        me(res.data.userId);
       }
     });
     let myDa = common_vendor.ref({});

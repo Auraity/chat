@@ -79,10 +79,10 @@
 		})
 	}
 	uni.getStorage({
-		key: 'userId',
+		key: 'user',
 		success: (res) => {
 			// console.log(res, "id");
-			me(res.data)
+			me(res.data.userId)
 		}
 	})
 	// 个人信息渲染

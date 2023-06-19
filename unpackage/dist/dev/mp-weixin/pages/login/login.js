@@ -25,10 +25,6 @@ const _sfc_main = {
           key: "user",
           data: res.data.data
         });
-        common_vendor.index.setStorage({
-          key: "userId",
-          data: 2
-        });
         common_vendor.index.reLaunch({
           url: "/pages/index/index"
         });

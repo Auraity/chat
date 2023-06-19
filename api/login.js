@@ -5,9 +5,12 @@ export const log = (email, pwd) => {
 }
 
 export const echeck = (email) => {
-	return request(`/emailVerificationCode?forwhat=register&email=${email}`, 'GET')
+	return request(`/emailVerificationCode?forWhat=register&email=${email}`, 'GET')
 }
 
-export const rgs = () => {
-	return request(`/register`, 'POST')
+export const rgs = (data) => {
+	console.log(data);
+	return request(
+		`/register?email=${data.email}&emailVerificationCode=${data.emailVerificationCode}&password=${data.password}&username=${data.username}`,
+		'POST')
 }

@@ -5,11 +5,13 @@ const _sfc_main = {
   props: ["newFriDa"],
   setup(__props) {
     const props = __props;
-    let userId = common_vendor.ref();
+    let uId = common_vendor.ref("");
     common_vendor.index.getStorage({
-      key: "userId",
+      key: "user",
       success: (res) => {
-        userId.value = res;
+        console.log(res, "id");
+        uId.value = res.data.userId;
+        console.log(uId.value);
       }
     });
     return (_ctx, _cache) => {
@@ -18,8 +20,8 @@ const _sfc_main = {
           return common_vendor.e({
             a: item.friendHeadImgUrl,
             b: common_vendor.t(item.friendName),
-            c: item.status == 0 && item.friendId == item.userId
-          }, item.status == 0 && item.friendId == item.userId ? {} : {
+            c: item.status == 0 && item.friendId == common_vendor.unref(uId)
+          }, item.status == 0 && item.friendId == common_vendor.unref(uId) ? {} : {
             d: common_vendor.t(item.statusDescription)
           }, {
             e: item.userId

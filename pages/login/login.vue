@@ -49,10 +49,6 @@
 				key: 'user',
 				data: res.data.data,
 			});
-			uni.setStorage({
-				key: 'userId',
-				data: 2,
-			});
 			uni.reLaunch({
 				url: '/pages/index/index'
 			});
