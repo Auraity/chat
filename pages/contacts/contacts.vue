@@ -2,7 +2,7 @@
 	<view class="container">
 		<view class="search">
 			<view @click="toSearch" class="inp">
-				<button type="default" @click="toAddFriends"> ※ 点击此处进行联系人搜索"</button>
+				<button type="default" @click="toSearch"> ※ 点击此处进行联系人搜索"</button>
 			</view>
 			<view class="btn">
 				<button type="default" @click="toAddFriends">✚</button>

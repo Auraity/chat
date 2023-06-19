@@ -9,10 +9,7 @@
 
 		<!-- 搜索结果 -->
 		<view class="search-result">
-			<view v-if="searching" class="loading">
-				<text class="loading-text">正在搜索中...</text>
-			</view>
-			<view v-else-if="searchResults.length === 0" class="empty">
+			<view v-if="searchResults==false" class="empty">
 				<text class="empty-text">暂无搜索结果~</text>
 			</view>
 			<view v-else class="result-item" v-for="(result, index) in searchResults" :key="index">
@@ -26,7 +23,7 @@
 	import {
 		ref
 	} from "vue";
-	let searchResults = ref([])
+	let searchResults = ref(false)
 </script>
 
 <style lang="scss">

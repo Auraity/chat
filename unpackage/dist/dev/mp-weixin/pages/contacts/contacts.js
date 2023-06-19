@@ -53,7 +53,7 @@ const _sfc_main = {
     cotApi();
     return (_ctx, _cache) => {
       return {
-        a: common_vendor.o(toAddFriends),
+        a: common_vendor.o(toSearch),
         b: common_vendor.o(toSearch),
         c: common_vendor.o(toAddFriends),
         d: common_vendor.p({

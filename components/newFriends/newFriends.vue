@@ -12,7 +12,7 @@
 				2已拒绝（friendId是自己表示别人加我）和未通过 
 		-->
 		<view class="cright">
-			<view v-if="item.status==0&&item.friendId!=item.userId" class="allbtn">
+			<view v-if="item.status==0&&item.friendId==item.userId" class="allbtn">
 				<button class="btn agreenbtn">同意</button>
 				<button class="btn refusebtn">拒绝</button>
 			</view>

@@ -50,3 +50,20 @@
   font-size: 24rpx;
   cursor: pointer;
 }
+.container .search-result {
+  text-align: center;
+}
+.container .search-result .loading {
+  margin-top: 20rpx;
+}
+.container .search-result .loading .loading-text {
+  color: #999;
+  font-size: 24rpx;
+}
+.container .search-result .empty {
+  margin-top: 20rpx;
+}
+.container .search-result .empty .empty-text {
+  color: #999;
+  font-size: 24rpx;
+}

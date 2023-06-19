@@ -18,8 +18,8 @@ const _sfc_main = {
           return common_vendor.e({
             a: item.friendHeadImgUrl,
             b: common_vendor.t(item.friendName),
-            c: item.status == 0 && item.friendId != item.userId
-          }, item.status == 0 && item.friendId != item.userId ? {} : {
+            c: item.status == 0 && item.friendId == item.userId
+          }, item.status == 0 && item.friendId == item.userId ? {} : {
             d: common_vendor.t(item.statusDescription)
           }, {
             e: item.userId

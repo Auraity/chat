@@ -56,3 +56,7 @@
   font-size: 24rpx;
   cursor: pointer;
 }
+.card .cright .text {
+  font-size: 30rpx;
+  color: #ccc;
+}

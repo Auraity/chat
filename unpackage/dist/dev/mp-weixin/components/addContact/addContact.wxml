@@ -1,1 +1,1 @@
-<view class="card"><view class="cleft"><image class="thumbnail" src="/static/logo.png"/><view class="content"><text class="title"> 姓名 </text></view></view><view class="cright"><button wx:if="{{1}}" class="addbtn">添加</button><text wx:else>已添加</text></view></view>
+<view class="card"><view class="cleft"><image class="thumbnail" src="{{a}}"/><view class="content"><text class="title">{{b}}</text></view></view><view class="cright"><view wx:if="{{c}}"><button class="addbtn" bindtap="{{d}}">添加</button></view><view wx:else><text class="text">已添加</text></view></view></view>
