@@ -1,9 +1,11 @@
 <template>
-	<view class="card" v-for='(item,i) in props.cotdata' :key="item.friendId">
-		<image class="thumbnail" :src="item.friendHeadImgUrl" />
+	<view class="container">
+		<view class="card">
+			<image class="thumbnail" :src="cotdata.friendHeadImgUrl" />
 
-		<view class="content">
-			<text class="title">{{item.friendName}}</text>
+			<view class="content">
+				<text class="title">{{cotdata.friendName}}</text>
+			</view>
 		</view>
 	</view>
 </template>
@@ -15,7 +17,9 @@
 		ref
 	} from 'vue'
 	// 获取父组件的值
-	const props = defineProps(['cotdata'])
+	const props = defineProps({
+		'cotdata': 'cotdata'
+	})
 	// console.log(props.cotdata, "666");
 </script>
 
@@ -35,9 +39,9 @@
 		}
 
 		.content {
-			flex: 1;
 			border-bottom: 1rpx solid #dddddd;
 			height: 100rpx;
+			flex: 1;
 
 			.title {
 				font-size: 34rpx;

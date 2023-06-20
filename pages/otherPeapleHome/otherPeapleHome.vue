@@ -2,15 +2,15 @@
 	<view class="container">
 		<!-- 顶部个人信息 -->
 		<view class="profile">
-			<image class="avatar" src="../../static/logo.png"></image>
+			<image class="avatar" :src="hisHomeDa.friendHeadImgUrl"></image>
 			<view class="info">
-				<text class="name">{{userInfo.name}}</text><br />
-				<text class="email">{{userInfo.email}}</text>
+				<text class="name">{{hisHomeDa.friendName}}</text><br />
+				<text class="email">{{hisHomeDa.friendEmail}}</text>
 			</view>
 		</view>
-		<text class="bio">个性签名：{{userInfo.bio}}</text>
+		<text class="bio">个性签名：{{hisHomeDa.friendIntroduction}}</text>
 		<view class="headright">
-			<view class="info-list" @click="toHisTrends">
+			<view class="info-list" @click="toHisTrends(props.fid)">
 				<text class="info-label">朋友圈主页</text>
 				<image class="arrow-icon" src="/static/arrowRight.png"></image>
 			</view>
@@ -29,8 +29,14 @@
 
 <script setup>
 	import {
-		ref
+		hisHome,
+		deleteFid
+	} from '../../api/contacts.js'
+	import {
+		ref,
+		defineProps
 	} from "vue";
+	const props = defineProps(['fid'])
 	let userInfo = ref({
 		name: '姓名',
 		logo: '../../static/logo.png',
@@ -41,7 +47,7 @@
 
 	function Delete() {
 		// 处理删除逻辑
-		console.log('删除用户');
+		deleteFidApi(props.fid)
 	}
 
 	function Message() {
@@ -49,14 +55,49 @@
 		uni.navigateTo({
 			url: '/pages/WebSocket/WebSocket'
 		})
-		console.log('发消息给用户');
 	}
 
-	function toHisTrends() {
+	function toHisTrends(fid) {
 		uni.navigateTo({
-			url: '/pages/hisTrends/hisTrends'
+			url: `/pages/hisTrends/hisTrends?fid=${fid}`
 		})
 	}
+	let hisHomeDa = ref([])
+	const hisHomeApi = async (friendId) => {
+		const res = await hisHome(friendId);
+		// console.log(res, 111);
+		if (res.data.code == "200" || res.data.code == 200) {
+			hisHomeDa.value = res.data.data;
+			// console.log(hisHomeDa.value, 222);
+		} else {
+			uni.showToast({
+				title: '数据获取失败',
+				icon: 'none'
+			});
+		}
+	}
+
+	const deleteFidApi = async (friendId) => {
+		const res = await deleteFid(friendId);
+		console.log(res, 111);
+		if (res.data.code == "200" || res.data.code == 200) {
+			uni.showToast({
+				title: '删除成功',
+				icon: 'none'
+			});
+			uni.switchTab({
+				url: '/pages/contacts/contacts'
+			})
+		} else {
+			uni.showToast({
+				title: '删除失败',
+				icon: 'none'
+			});
+		}
+	}
+
+
+	hisHomeApi(props.fid)
 </script>
 
 <style lang="scss">

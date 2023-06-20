@@ -1,23 +1,41 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const _sfc_main = {};
-if (!Array) {
-  const _easycom_trendsListCop2 = common_vendor.resolveComponent("trendsListCop");
-  _easycom_trendsListCop2();
-}
-const _easycom_trendsListCop = () => "../../components/trendsListCop/trendsListCop.js";
-if (!Math) {
-  _easycom_trendsListCop();
-}
-function _sfc_render(_ctx, _cache) {
-  return {
-    a: common_vendor.f(5, (i, k0, i0) => {
+const api_contacts = require("../../api/contacts.js");
+require("../../api/request.js");
+const _sfc_main = {
+  __name: "hisTrends",
+  props: ["fid"],
+  setup(__props) {
+    const props = __props;
+    let hisTrendsDa = common_vendor.ref([]);
+    const hisTrendsApi = async (friendId) => {
+      const res = await api_contacts.hisTrends(friendId);
+      console.log(res, 111);
+      if (res.data.code == "200" || res.data.code == 200) {
+        hisTrendsDa.value = res.data.data.list;
+        console.log(hisTrendsDa, 222);
+      } else {
+        common_vendor.index.showToast({
+          title: "数据获取失败",
+          icon: "none"
+        });
+      }
+    };
+    hisTrendsApi(props.fid);
+    return (_ctx, _cache) => {
       return {
-        a: "66cc7280-0-" + i0,
-        b: i
+        a: common_vendor.f(common_vendor.unref(hisTrendsDa), (item, i, i0) => {
+          return {
+            a: item.userHeadImgUrl,
+            b: common_vendor.t(item.username),
+            c: common_vendor.t(item.content),
+            d: common_vendor.t(item.createTime),
+            e: i
+          };
+        })
       };
-    })
-  };
-}
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "D:/HXproject/Chat/pages/hisTrends/hisTrends.vue"]]);
+    };
+  }
+};
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/HXproject/Chat/pages/hisTrends/hisTrends.vue"]]);
 wx.createPage(MiniProgramPage);

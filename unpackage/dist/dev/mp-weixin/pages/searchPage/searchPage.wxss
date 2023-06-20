@@ -75,13 +75,3 @@
   color: #999;
   font-size: 24rpx;
 }
-.container .search-result .result-item {
-  margin-top: 10rpx;
-  padding: 10rpx;
-  background-color: #fff;
-  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
-  border-radius: 8rpx;
-}
-.container .search-result .result-item .result-text {
-  color: #333;
-}

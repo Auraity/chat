@@ -1,1 +1,1 @@
-<view class="container"><view wx:for="{{a}}" wx:for-item="i" wx:key="b"><trends-list-cop u-i="{{i.a}}" bind:__l="__l"></trends-list-cop></view></view>
+<view wx:for="{{a}}" wx:for-item="item" wx:key="e" class="container"><view class="card"><image class="thumbnail" src="{{item.a}}"/><view class="content"><text class="title">{{item.b}}</text><view/><text class="description">{{item.c}}</text><view/><text class="publishedDate">发布时间：{{item.d}}</text></view></view></view>

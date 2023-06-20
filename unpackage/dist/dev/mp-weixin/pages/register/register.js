@@ -97,7 +97,7 @@ const _sfc_main = {
     }
     function sendCode() {
       console.log(userData.email, "canshu");
-      echeckApi(userData.email);
+      echeckApi("register", userData.email);
       countdown.value = 60;
       isCodeSent.value = true;
       const timer = setInterval(() => {
@@ -109,8 +109,8 @@ const _sfc_main = {
       }, 1e3);
     }
     let codeSucc = common_vendor.ref(false);
-    const echeckApi = async (email) => {
-      const res = await api_login.echeck(email);
+    const echeckApi = async (forWhat, email) => {
+      const res = await api_login.echeck(forWhat, email);
       console.log(res, 111);
       if (res.data.code == "200" || res.data.code == 200) {
         codeSucc.value = true;

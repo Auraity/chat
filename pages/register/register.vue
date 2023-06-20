@@ -138,7 +138,7 @@
 
 	function sendCode() {
 		console.log(userData.email, "canshu");
-		echeckApi(userData.email)
+		echeckApi('register', userData.email)
 		countdown.value = 60; // 重置倒计时为初始值
 		isCodeSent.value = true; // 验证码已发送
 		const timer = setInterval(() => {
@@ -157,8 +157,8 @@
 		rgs
 	} from '../../api/login.js'
 	let codeSucc = ref(false)
-	const echeckApi = async (email) => {
-		const res = await echeck(email);
+	const echeckApi = async (forWhat, email) => {
+		const res = await echeck(forWhat, email);
 		console.log(res, 111);
 		if (res.data.code == "200" || res.data.code == 200) {
 			codeSucc.value = true;

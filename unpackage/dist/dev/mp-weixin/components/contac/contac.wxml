@@ -1,1 +1,1 @@
-<view wx:for="{{a}}" wx:for-item="item" wx:key="c" class="card"><image class="thumbnail" src="{{item.a}}"/><view class="content"><text class="title">{{item.b}}</text></view></view>
+<view class="container"><view class="card"><image class="thumbnail" src="{{a}}"/><view class="content"><text class="title">{{b}}</text></view></view></view>

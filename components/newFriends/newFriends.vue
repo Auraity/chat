@@ -1,5 +1,5 @@
 <template>
-	<view class="card" v-for="(item,i) in props.newFriDa" :key="item.userId">
+	<view class="card" v-for="(item,i) in props.newFriDa" :key="i">
 		<view class="cleft">
 			<image class="thumbnail" :src="item.friendHeadImgUrl" />
 			<view class="content">
@@ -13,8 +13,8 @@
 		-->
 		<view class="cright">
 			<view v-if="item.status==0&&item.friendId==uId" class="allbtn">
-				<button class="btn agreenbtn">同意</button>
-				<button class="btn refusebtn">拒绝</button>
+				<button class="btn agreenbtn" @click="agreen(i)">同意</button>
+				<button class="btn refusebtn" @click="refuse(i)">拒绝</button>
 			</view>
 			<view v-else>
 				<text class="text">{{item.statusDescription}}</text>
@@ -25,6 +25,9 @@
 
 
 <script setup>
+	import {
+		updateStatus
+	} from '../../api/contacts.js'
 	import {
 		defineProps,
 		ref
@@ -43,6 +46,28 @@
 			console.log(uId.value);
 		}
 	})
+	const upStatusApi = async (uid, fid, status) => {
+		const res = await updateStatus(uid, fid, status);
+		console.log(res, 111);
+		if (res.data.code == "200" || res.data.code == 200) {
+			uni.switchTab({
+				url: '/pages/contacts/contacts'
+			})
+		} else {
+			uni.showToast({
+				title: '数据获取失败',
+				icon: 'none'
+			});
+		}
+	}
+
+	function agreen(index) {
+		upStatusApi(props.newFriDa[index].userId, props.newFriDa[index].friendId, 1)
+	}
+
+	function refuse(index) {
+		upStatusApi(props.newFriDa[index].userId, props.newFriDa[index].friendId, 2)
+	}
 </script>
 
 <style lang="scss">

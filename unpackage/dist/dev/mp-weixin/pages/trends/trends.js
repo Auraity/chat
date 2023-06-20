@@ -1,5 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const api_trends = require("../../api/trends.js");
+require("../../api/request.js");
 if (!Array) {
   const _easycom_trendsListCop2 = common_vendor.resolveComponent("trendsListCop");
   _easycom_trendsListCop2();
@@ -16,14 +18,26 @@ const _sfc_main = {
         url: "/pages/textEdit/textEdit"
       });
     }
+    let allFTrendsDa = common_vendor.ref([]);
+    const allFTrendsApi = async () => {
+      const res = await api_trends.allFTrends();
+      console.log(res);
+      if (res.data.code == "200" || res.data.code == 200) {
+        allFTrendsDa.value = res.data.data.list;
+        console.log(allFTrendsDa.value, 222);
+      } else {
+        common_vendor.index.showToast({
+          title: "数据获取失败",
+          icon: "none"
+        });
+      }
+    };
+    allFTrendsApi();
     return (_ctx, _cache) => {
       return {
         a: common_vendor.o(addTrends),
-        b: common_vendor.f(5, (i, k0, i0) => {
-          return {
-            a: "c74d60ef-0-" + i0,
-            b: i
-          };
+        b: common_vendor.p({
+          allFTrendsDa: common_vendor.unref(allFTrendsDa)
         })
       };
     };

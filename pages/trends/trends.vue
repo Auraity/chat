@@ -3,18 +3,41 @@
 		<view class="addTrend" @click="addTrends">
 			<input type="text" placeholder="       ✚ 点击此处创建动态···" />
 		</view>
-		<view v-for="i in 5" :key="i">
-			<trendsListCop></trendsListCop>
+		<view>
+			<trendsListCop :allFTrendsDa='allFTrendsDa'></trendsListCop>
 		</view>
 	</view>
 </template>
 
 <script setup>
+	import {
+		ref
+	} from "vue";
+	import {
+		allFTrends
+	} from '../../api/trends.js'
+
 	function addTrends() {
 		uni.navigateTo({
 			url: '/pages/textEdit/textEdit'
 		})
 	}
+	// 调用接口
+	let allFTrendsDa = ref([])
+	const allFTrendsApi = async () => {
+		const res = await allFTrends();
+		console.log(res);
+		if (res.data.code == "200" || res.data.code == 200) {
+			allFTrendsDa.value = res.data.data.list;
+			console.log(allFTrendsDa.value, 222);
+		} else {
+			uni.showToast({
+				title: '数据获取失败',
+				icon: 'none'
+			});
+		}
+	}
+	allFTrendsApi()
 </script>
 
 <style lang="scss" scoped>

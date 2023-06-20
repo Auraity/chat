@@ -13,6 +13,19 @@ if (!Math) {
 const _sfc_main = {
   __name: "contacts",
   setup(__props) {
+    let cotDa = common_vendor.ref([]);
+    const cotApi = async () => {
+      const res = await api_tabbar.cot();
+      if (res.data.code == "200" || res.data.code == 200) {
+        cotDa.value = res.data.data.list;
+      } else {
+        common_vendor.index.showToast({
+          title: "数据获取失败",
+          icon: "none"
+        });
+      }
+    };
+    cotApi();
     function toSearch() {
       common_vendor.index.navigateTo({
         url: "/pages/searchPage/searchPage"
@@ -28,29 +41,17 @@ const _sfc_main = {
         url: "/pages/newFriends/newFriends"
       });
     }
-    function toOtherHome() {
+    function toOtherHome(fid) {
+      console.log(fid);
       common_vendor.index.navigateTo({
-        url: "/pages/otherPeapleHome/otherPeapleHome"
+        url: `/pages/otherPeapleHome/otherPeapleHome?fid=${fid}`
       });
     }
-    let addCot = common_vendor.reactive([{
+    let addCot = common_vendor.reactive({
       "friendId": 0,
       "friendName": "添加好友",
       "friendHeadImgUrl": "/static/addFriends.png"
-    }]);
-    let cotDa = common_vendor.ref([]);
-    const cotApi = async () => {
-      const res = await api_tabbar.cot();
-      if (res.data.code == "200" || res.data.code == 200) {
-        cotDa.value = res.data.data.list;
-      } else {
-        common_vendor.index.showToast({
-          title: "数据获取失败",
-          icon: "none"
-        });
-      }
-    };
-    cotApi();
+    });
     return (_ctx, _cache) => {
       return {
         a: common_vendor.o(toSearch),
@@ -60,10 +61,16 @@ const _sfc_main = {
           cotdata: common_vendor.unref(addCot)
         }),
         e: common_vendor.o(toNewFriends),
-        f: common_vendor.p({
-          cotdata: common_vendor.unref(cotDa)
-        }),
-        g: common_vendor.o(toOtherHome)
+        f: common_vendor.f(common_vendor.unref(cotDa), (item, i, i0) => {
+          return {
+            a: "90a1bbf6-1-" + i0,
+            b: common_vendor.p({
+              cotdata: item
+            }),
+            c: common_vendor.o(($event) => toOtherHome(item.friendId), item.friendId),
+            d: item.friendId
+          };
+        })
       };
     };
   }

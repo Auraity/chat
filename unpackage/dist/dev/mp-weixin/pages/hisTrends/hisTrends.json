@@ -1,7 +1,5 @@
 {
-  "navigationBarTitleText": "",
+  "navigationBarTitleText": "朋友圈",
   "enablePullDownRefresh": false,
-  "usingComponents": {
-    "trends-list-cop": "../../components/trendsListCop/trendsListCop"
-  }
+  "usingComponents": {}
 }

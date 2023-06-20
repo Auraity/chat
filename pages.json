@@ -83,71 +83,57 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/WebSocket/WebSocket",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/newFriends/newFriends",
+			"style": {
+				"navigationBarTitleText": "新的朋友",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/otherPeapleHome/otherPeapleHome",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/hisTrends/hisTrends",
+			"style": {
+				"navigationBarTitleText": "朋友圈",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/alterUserName/alterUserName",
+			"style": {
+				"navigationBarTitleText": "更改名字",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/alterSign/alterSign",
+			"style": {
+				"navigationBarTitleText": "修改个性签名",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/alterPassword/alterPassword",
+			"style": {
+				"navigationBarTitleText": "修改密码",
+				"enablePullDownRefresh": false
+			}
+
 		}
-	    ,{
-            "path" : "pages/WebSocket/WebSocket",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/newFriends/newFriends",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "新的朋友",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/otherPeapleHome/otherPeapleHome",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/hisTrends/hisTrends",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/alterUserName/alterUserName",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "更改名字",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/alterSign/alterSign",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "修改个性签名",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/alterPassword/alterPassword",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "修改密码",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

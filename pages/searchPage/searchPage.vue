@@ -3,7 +3,7 @@
 		<!-- 搜索框 -->
 		<view class="search-bar">
 			<image class="search-icon" src="/static/icon/search.png"></image>
-			<input class="search-input" type="text" placeholder="请输入搜索内容" @input="handleInput" />
+			<input class="search-input" v-model="username" type="text" placeholder="请输入用户名" />
 			<button class="search-btn" @click="handleSearch">搜索</button>
 		</view>
 
@@ -12,8 +12,8 @@
 			<view v-if="searchResults==false" class="empty">
 				<text class="empty-text">暂无搜索结果~</text>
 			</view>
-			<view v-else class="result-item" v-for="(result, index) in searchResults" :key="index">
-				<text class="result-text">{{ result }}</text>
+			<view v-else>
+				<contac :cotdata='searchFriDa'></contac>
 			</view>
 		</view>
 	</view>
@@ -23,7 +23,32 @@
 	import {
 		ref
 	} from "vue";
+	import {
+		searFri
+	} from '../../api/contacts.js'
 	let searchResults = ref(false)
+
+	let username = ref('')
+
+	function handleSearch() {
+		console.log(username.value);
+		searchFriApi(username.value)
+	}
+
+	let searchFriDa = ref([])
+	const searchFriApi = async (username) => {
+		const res = await searFri(username);
+		if (res.data.code == "200" || res.data.code == 200) {
+			searchResults.value = true;
+			searchFriDa.value = res.data.data.list;
+			console.log(searchFriDa.value, 222);
+		} else {
+			uni.showToast({
+				title: '数据获取失败',
+				icon: 'none'
+			});
+		}
+	}
 </script>
 
 <style lang="scss">
@@ -84,18 +109,6 @@
 				.empty-text {
 					color: #999;
 					font-size: 24rpx;
-				}
-			}
-
-			.result-item {
-				margin-top: 10rpx;
-				padding: 10rpx;
-				background-color: #fff;
-				box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
-				border-radius: 8rpx;
-
-				.result-text {
-					color: #333;
 				}
 			}
 		}

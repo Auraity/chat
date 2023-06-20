@@ -1,12 +1,12 @@
 <template>
-	<view class="card">
-		<image class="thumbnail" src="/static/logo.png" />
+	<view class="card" v-for="(item,i) in props.allFTrendsDa" :key="i">
+		<image class="thumbnail" :src="item.userHeadImgUrl" />
 		<view class="content">
-			<text class="title"> 姓名 </text><br />
+			<text class="title"> {{item.username}} </text><br />
 			<text class="description">
-				descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription
+				{{item.content}}
 			</text><br />
-			<text class="publishedDate">发布时间：</text>
+			<text class="publishedDate">发布时间：{{item.createTime}}</text>
 
 		</view>
 	</view>
@@ -14,6 +14,11 @@
 
 
 <script setup>
+	import {
+		defineProps
+	} from 'vue'
+	// 获取父组件的值
+	const props = defineProps(['allFTrendsDa'])
 </script>
 
 <style lang="scss">

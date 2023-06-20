@@ -74,7 +74,7 @@
 
 	function formCheck() {
 		// 邮箱校验		
-		if (email.value === '' || email.value === null) {
+		if (email.value == '' || email.value == null) {
 			isValid.value = false;
 			uni.showToast({
 				title: '邮箱不能为空',

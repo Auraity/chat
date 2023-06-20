@@ -1,15 +1,15 @@
 <template>
 	<view class="container">
 		<view class="input-email">
-			<input v-model="email" type="text" placeholder="请输入电子邮件" class="emailInput" />
+			<input v-model="userData.email" type="text" placeholder="请输入电子邮件" class="emailInput" />
 			<button class="codeCli" @click="sendCode" v-if="!isCodeSent">验证码</button>
-			<button class="codeSecond" @click="sendCode" v-else>{{ countdown }} 秒后重试</button>
+			<button class="codeSecond" v-else>{{ countdown }} 秒后重试</button>
 		</view>
 		<view class="input-container">
-			<input v-model="code" type="text" placeholder="请输入验证码" class="input" />
+			<input v-model="userData.code" type="text" placeholder="请输入验证码" class="input" />
 		</view>
 		<view class="input-container">
-			<input v-model="pwd" type="password" placeholder="请输入新密码" class="input" />
+			<input v-model="userData.pwd" type="password" placeholder="请输入新密码" class="input" />
 		</view>
 		<view class="input-container">
 			<input v-model="rePwd" type="password" placeholder="请输入确认密码" class="input" />
@@ -20,25 +20,23 @@
 
 <script setup>
 	import {
-		ref
+		echeck,
+		forgetPwd
+	} from '../../api/login.js'
+	import {
+		ref,
+		reactive
 	} from 'vue';
-	let email = ref('');
-	let code = ref('');
-	let pwd = ref('')
+	let userData = reactive({
+		email: '',
+		code: '',
+		pwd: '',
+	})
 	let rePwd = ref('')
 	let isCodeSent = ref(false)
 	let countdown = ref(60)
 
 	let isValid = ref(true)
-
-	function confirm() {
-		formCheck()
-		if (isValid.value) {
-			uni.reLaunch({
-				url: '/pages/login/login'
-			})
-		}
-	}
 
 	// 表单校验
 	var usernameRegex = /^.{2,16}$/;
@@ -49,7 +47,7 @@
 
 	function formCheck() {
 		// 邮箱校验		
-		if (email.value === '' || email.value === null) {
+		if (userData.email === '' || userData.email === null) {
 			isValid.value = false;
 			uni.showToast({
 				title: '邮箱不能为空',
@@ -57,7 +55,7 @@
 			});
 			return;
 		} else {
-			if (!emailRegex.test(email.value)) {
+			if (!emailRegex.test(userData.email)) {
 				isValid.value = false;
 				uni.showToast({
 					title: '邮箱输入格式不正确',
@@ -68,7 +66,7 @@
 		}
 
 		// 验证码校验
-		if (code.value === '' || code.value === null) {
+		if (userData.code === '' || userData.code === null) {
 			isValid.value = false;
 			uni.showToast({
 				title: '验证码不能为空',
@@ -76,7 +74,7 @@
 			});
 			return;
 		} else {
-			if (!codeRegex.test(code.value)) {
+			if (!codeRegex.test(userData.code)) {
 				isValid.value = false;
 				uni.showToast({
 					title: '验证码输入不正确',
@@ -87,7 +85,7 @@
 		}
 
 		// 密码校验
-		if (pwd.value === '' || pwd.value === null) {
+		if (userData.pwd === '' || userData.pwd === null) {
 			isValid.value = false;
 			uni.showToast({
 				title: '密码不能为空',
@@ -95,7 +93,7 @@
 			});
 			return;
 		} else {
-			if (!pwdRegex.test(pwd.value)) {
+			if (!pwdRegex.test(userData.pwd)) {
 				isValid.value = false;
 				uni.showToast({
 					title: '密码至少输入4位',
@@ -115,10 +113,10 @@
 			});
 			return;
 		} else {
-			if (rePwd.value !== pwd.value) {
+			if (rePwd.value !== userData.pwd) {
 				isValid.value = false;
 				uni.showToast({
-					title: '确认密码与密码不相同',
+					title: '确认密码与密s码不相同',
 					icon: 'none'
 				});
 			}
@@ -126,6 +124,7 @@
 	}
 
 	function sendCode() {
+		echeckApi('updatePassword', userData.email)
 		// console.log("发送验证码");
 		countdown.value = 60; // 重置倒计时为初始值
 		isCodeSent.value = true; // 验证码已发送
@@ -137,6 +136,46 @@
 			}
 		}, 1000);
 
+	}
+
+	// 调用接口
+	let codeSucc = ref(false)
+	const echeckApi = async (forPwd, email) => {
+		const res = await echeck(forPwd, email);
+		console.log(res, 111);
+		if (res.data.code == "200" || res.data.code == 200) {
+			codeSucc.value = true;
+		} else {
+			uni.showToast({
+				title: '验证码获取失败',
+				icon: 'none'
+			});
+		}
+	}
+	const forgetPwdApi = async (data) => {
+		const res = await forgetPwd(data);
+		console.log(res, 222);
+		if (res.data.code == "200" || res.data.code == 200) {
+			uni.showToast({
+				title: '修改密码成功',
+				icon: 'none'
+			});
+			uni.reLaunch({
+				url: '/pages/login/login'
+			})
+		} else {
+			uni.showToast({
+				title: '修改失败',
+				icon: 'none'
+			});
+		}
+	}
+
+	function confirm() {
+		formCheck()
+		if (isValid.value) {
+			forgetPwdApi(userData)
+		}
 	}
 </script>
 

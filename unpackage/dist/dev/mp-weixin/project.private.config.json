@@ -100,6 +100,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "忘记密码",
+          "pathName": "pages/forgetPwd/forgetPwd",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

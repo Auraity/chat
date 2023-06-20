@@ -16,10 +16,10 @@ const _sfc_main = {
     let newFriDa = common_vendor.ref([]);
     const newFriApi = async () => {
       const res = await api_contacts.newFri();
-      console.log(res, 111);
+      console.log(res, 11);
       if (res.data.code == "200" || res.data.code == 200) {
         newFriDa.value = res.data.data.list;
-        console.log(newFriDa.value, 222);
+        console.log(newFriDa.value, 22);
       } else {
         common_vendor.index.showToast({
           title: "数据获取失败",

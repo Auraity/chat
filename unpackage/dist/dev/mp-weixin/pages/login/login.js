@@ -43,7 +43,7 @@ const _sfc_main = {
     }
     var emailRegex = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
     function formCheck() {
-      if (email.value === "" || email.value === null) {
+      if (email.value == "" || email.value == null) {
         isValid.value = false;
         common_vendor.index.showToast({
           title: "邮箱不能为空",

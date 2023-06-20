@@ -1,5 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const api_sessions = require("../../api/sessions.js");
+require("../../api/request.js");
 const _sfc_main = {
   __name: "WebSocket",
   setup(__props) {
@@ -83,6 +85,21 @@ const _sfc_main = {
         url: "/pages/my/my"
       });
     }
+    let historyMsgDa = common_vendor.ref([]);
+    const historyMsgApi = async (sessionId) => {
+      const res = await api_sessions.historyMsg(sessionId);
+      console.log(res, 11);
+      if (res.data.code == "200" || res.data.code == 200) {
+        historyMsgDa.value = res.data.data.list;
+        console.log(historyMsgDa.value, 22);
+      } else {
+        common_vendor.index.showToast({
+          title: "数据获取失败",
+          icon: "none"
+        });
+      }
+    };
+    historyMsgApi(1);
     return (_ctx, _cache) => {
       return {
         a: common_vendor.f(messages, (message, index, i0) => {

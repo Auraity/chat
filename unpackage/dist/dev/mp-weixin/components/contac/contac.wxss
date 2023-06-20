@@ -35,9 +35,9 @@
   margin-right: 20rpx;
 }
 .card .content {
-  flex: 1;
   border-bottom: 1rpx solid #dddddd;
   height: 100rpx;
+  flex: 1;
 }
 .card .content .title {
   font-size: 34rpx;

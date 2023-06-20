@@ -30,6 +30,9 @@
 
 <script setup>
 	import {
+		historyMsg
+	} from '../../api/sessions.js'
+	import {
 		ref
 	} from "vue";
 	const messages = [{
@@ -114,6 +117,22 @@
 
 		})
 	}
+
+	let historyMsgDa = ref([])
+	const historyMsgApi = async (sessionId) => {
+		const res = await historyMsg(sessionId);
+		console.log(res, 11);
+		if (res.data.code == "200" || res.data.code == 200) {
+			historyMsgDa.value = res.data.data.list;
+			console.log(historyMsgDa.value, 22);
+		} else {
+			uni.showToast({
+				title: '数据获取失败',
+				icon: 'none'
+			});
+		}
+	}
+	historyMsgApi(1)
 </script>
 
 <style lang="scss">
