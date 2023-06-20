@@ -7,10 +7,10 @@
 		<view class="logo"><text>MyChat</text></view>
 		<view class="content">
 			<view class="input-container">
-				<input v-model="email" type="text" placeholder="请输入email" class="input" />
+				<input @change="changeEmail" type="text" placeholder="请输入email" class="input" />
 			</view>
 			<view class="input-container">
-				<input v-model="pwd" type="text" placeholder="请输入密码" class="input" />
+				<input @change="changePwd" type="text" placeholder="请输入密码" class="input" />
 			</view>
 			<view class="text">
 				<text @click="toRegister">点击注册</text>
@@ -47,12 +47,8 @@
 
 	const loginApi = async () => {
 		const res = await log(email.value, pwd.value);
-		// console.log(res.data.code);
 		if (res.data.code == "200" || res.data.code == 200) {
-			uni.setStorage({
-				key: 'user',
-				data: res.data.data,
-			});
+			uni.setStorageSync('user', res.data.data);
 			uni.reLaunch({
 				url: '/pages/index/index'
 			});
@@ -69,6 +65,10 @@
 		formCheck()
 		if (isValid.value) {
 			loginApi()
+			uni.showToast({
+				title: '用户信息不正确',
+				icon: 'none'
+			});
 		}
 	}
 
@@ -76,15 +76,23 @@
 	var emailRegex = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
 	var pwdRegex = /^.{4,}$/;
 
+	function changeEmail(e) {
+		email.value = e.detail.value;
+	}
+
+	function changePwd(e) {
+		pwd.value = e.detail.value;
+	}
+
 	function formCheck() {
+		isValid.value = true;
 		// 邮箱校验		
-		if (email.value == '' || email.value == null) {
+		if (email.value === '' || email.value == null) {
 			isValid.value = false;
 			uni.showToast({
 				title: '邮箱不能为空',
 				icon: 'none'
 			});
-			return;
 		} else {
 			if (!emailRegex.test(email.value)) {
 				isValid.value = false;
@@ -92,7 +100,6 @@
 					title: '邮箱输入的格式不正确',
 					icon: 'none'
 				});
-				return;
 			}
 		}
 

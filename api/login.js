@@ -8,7 +8,6 @@ export const logout = () => {
 	return request(`/logout`, 'GET')
 }
 
-
 export const echeck = (forWhat, email) => {
 	return request(`/emailVerificationCode?forWhat=${forWhat}&email=${email}`, 'GET')
 }

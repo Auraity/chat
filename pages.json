@@ -58,7 +58,7 @@
 		}, {
 			"path": "pages/myTrends/myTrends",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "我的朋友圈",
 				"enablePullDownRefresh": false
 			}
 

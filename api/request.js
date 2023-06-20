@@ -1,27 +1,31 @@
 // 封装请求
-let baseUrl = "http://172.20.10.3:8080"
+let baseUrl = "http://129.211.211.180:8081"
+
 
 const request = (url, method, data) => {
+
+	let key = uni.getStorageSync('user')
+
+	const header = key ? {
+		'JSESSIONID': key
+	} : {}
 	return new Promise((resolve, reject) => {
-		uni.getStorage({
-			key: 'user',
-			success: function(res) {
-				uni.request({
-					url: baseUrl + url,
-					method,
-					data,
-					header: {
-						'JSESSIONID': res.data.jsessionid
-					},
-					success: res => {
-						resolve(res)
-					},
-					fail: err => {
-						reject(err)
-					}
-				})
+		console.log(key);
+		uni.request(Object.assign({
+			url: baseUrl + url,
+			method,
+			data,
+			header: {
+				'JSESSIONID': key.jsessionid
+			},
+			success: res => {
+				resolve(res)
+			},
+			fail: err => {
+				reject(err)
 			}
-		})
+		}))
+
 	})
 }
 export default request
