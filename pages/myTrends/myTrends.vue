@@ -1,3 +1,7 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="card">
 		<image class="thumbnail" src="/static/logo.png" />

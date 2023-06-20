@@ -1,3 +1,7 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="container">
 		<!-- 搜索框 -->
@@ -13,7 +17,9 @@
 				<text class="empty-text">暂无搜索结果~</text>
 			</view>
 			<view v-else>
-				<contac :cotdata='searchFriDa'></contac>
+				<view v-for="(item,i) in searchFriDa" :key="i">
+					<contac :cotdata='item'></contac>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -31,7 +37,6 @@
 	let username = ref('')
 
 	function handleSearch() {
-		console.log(username.value);
 		searchFriApi(username.value)
 	}
 

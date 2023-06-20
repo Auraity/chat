@@ -1,3 +1,7 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="container">
 		<view class="search">
@@ -33,7 +37,6 @@
 		// console.log(res, 111);
 		if (res.data.code == "200" || res.data.code == 200) {
 			cotDa.value = res.data.data.list;
-			// console.log(cotDa.value, 222);
 		} else {
 			uni.showToast({
 				title: '数据获取失败',
@@ -62,7 +65,6 @@
 	}
 
 	function toOtherHome(fid) {
-		console.log(fid);
 		uni.navigateTo({
 			url: `/pages/otherPeapleHome/otherPeapleHome?fid=${fid}`
 		})

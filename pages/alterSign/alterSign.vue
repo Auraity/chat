@@ -1,3 +1,7 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="container">
 		<input class="input" type="text" v-model="newSign" placeholder="请输入个性签名" />
@@ -9,9 +13,15 @@
 	import {
 		ref
 	} from "vue";
-
-	let newSign = ref()
+	let newSign = ref('')
 	let isValid = ref(true)
+	import {
+		onLoad
+	} from "@dcloudio/uni-app"
+
+	onLoad((e) => {
+		newSign.value = e.friendIntroduction;
+	})
 
 	function changeSign() {
 		// 发送请求到服务器更改用户名

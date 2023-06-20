@@ -5,6 +5,9 @@ const _sfc_main = {
   setup(__props) {
     let newUsername = common_vendor.ref("");
     let isValid = common_vendor.ref(true);
+    common_vendor.onLoad((e) => {
+      newUsername.value = e.friendName;
+    });
     function changeUsername() {
       formCheck();
       if (isValid.value) {

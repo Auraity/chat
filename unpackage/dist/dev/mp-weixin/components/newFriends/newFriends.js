@@ -11,14 +11,11 @@ const _sfc_main = {
     common_vendor.index.getStorage({
       key: "user",
       success: (res) => {
-        console.log(res, "id");
         uId.value = res.data.userId;
-        console.log(uId.value);
       }
     });
     const upStatusApi = async (uid, fid, status) => {
       const res = await api_contacts.updateStatus(uid, fid, status);
-      console.log(res, 111);
       if (res.data.code == "200" || res.data.code == 200) {
         common_vendor.index.switchTab({
           url: "/pages/contacts/contacts"

@@ -40,7 +40,6 @@ const _sfc_main = {
     };
     const deleteFidApi = async (friendId) => {
       const res = await api_contacts.deleteFid(friendId);
-      console.log(res, 111);
       if (res.data.code == "200" || res.data.code == 200) {
         common_vendor.index.showToast({
           title: "删除成功",

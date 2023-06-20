@@ -4,82 +4,22 @@ const api_sessions = require("../../api/sessions.js");
 require("../../api/request.js");
 const _sfc_main = {
   __name: "WebSocket",
+  props: ["sessionId"],
   setup(__props) {
-    const messages = [
-      {
-        sender: "other",
-        avatar: "/static/addFriends.png",
-        content: "你好？",
-        time: "2023-09-09 09:30"
-      },
-      {
-        sender: "me",
-        avatar: "/static/logo.png",
-        content: "你好，我有一个问题想请教你。",
-        time: "2023-09-09 09:35"
-      },
-      {
-        sender: "me",
-        avatar: "/static/logo.png",
-        content: "你好，我有一个问题想请教你。",
-        time: "2023-09-09 09:35"
-      },
-      {
-        sender: "me",
-        avatar: "/static/logo.png",
-        content: "你好，我有一个问题想请教你。",
-        time: "2023-09-09 09:35"
-      },
-      {
-        sender: "me",
-        avatar: "/static/logo.png",
-        content: "你好，我有一个问题想请教你我有一个问题想请教你。",
-        time: "2023-09-09 09:35"
-      },
-      {
-        sender: "other",
-        avatar: "/static/addFriends.png",
-        content: "你好，有什么可以帮到你的吗你好，有什么可以帮到你的吗？",
-        time: "2023-09-09 09:38"
-      },
-      {
-        sender: "other",
-        avatar: "/static/addFriends.png",
-        content: "你好，有什么可以帮到你的吗你好，有什么可以帮到你的吗？",
-        time: "2023-09-09 09:38"
-      },
-      {
-        sender: "other",
-        avatar: "/static/addFriends.png",
-        content: "你好，有什么可以帮到你的吗你好，有什么可以帮到你的吗？",
-        time: "2023-09-09 09:38"
-      },
-      {
-        sender: "other",
-        avatar: "/static/addFriends.png",
-        content: "你好，有什么可以帮到你的吗你好，有什么可以帮到你的吗？",
-        time: "2023-09-09 09:38"
-      },
-      {
-        sender: "other",
-        avatar: "/static/addFriends.png",
-        content: "你好，有什么可以帮到你的吗你好，有什么可以帮到你的吗？",
-        time: "2023-09-09 09:38"
-      },
-      {
-        sender: "me",
-        avatar: "/static/logo.png",
-        content: "你好，我有一个问题想请教你。",
-        time: "2023-09-09 09:35"
-      }
-      // 添加更多聊天记录...
-    ];
+    const props = __props;
     let inputText = common_vendor.ref("");
     function toOtherHome() {
       common_vendor.index.navigateTo({
         url: "/pages/otherPeapleHome/otherPeapleHome"
       });
     }
+    let myId = common_vendor.ref(null);
+    common_vendor.index.getStorage({
+      key: "user",
+      success: function(res) {
+        myId.value = res.data.userId;
+      }
+    });
     function toMyHome() {
       common_vendor.index.switchTab({
         url: "/pages/my/my"
@@ -88,10 +28,8 @@ const _sfc_main = {
     let historyMsgDa = common_vendor.ref([]);
     const historyMsgApi = async (sessionId) => {
       const res = await api_sessions.historyMsg(sessionId);
-      console.log(res, 11);
       if (res.data.code == "200" || res.data.code == 200) {
         historyMsgDa.value = res.data.data.list;
-        console.log(historyMsgDa.value, 22);
       } else {
         common_vendor.index.showToast({
           title: "数据获取失败",
@@ -99,24 +37,24 @@ const _sfc_main = {
         });
       }
     };
-    historyMsgApi(1);
+    historyMsgApi(props.sessionId);
     return (_ctx, _cache) => {
       return {
-        a: common_vendor.f(messages, (message, index, i0) => {
+        a: common_vendor.f(common_vendor.unref(historyMsgDa), (item, i, i0) => {
           return common_vendor.e({
-            a: message.sender === "me"
-          }, message.sender === "me" ? {
-            b: common_vendor.t(message.content),
-            c: common_vendor.t(message.time),
-            d: message.avatar,
-            e: common_vendor.o(toMyHome, index)
+            a: item.fromUserId == common_vendor.unref(myId)
+          }, item.fromUserId == common_vendor.unref(myId) ? {
+            b: common_vendor.t(item.content),
+            c: common_vendor.t(item.createTime),
+            d: item.fromUserHeadImgUrl,
+            e: common_vendor.o(toMyHome, item.messageId)
           } : {
-            f: message.avatar,
-            g: common_vendor.o(toOtherHome, index),
-            h: common_vendor.t(message.content),
-            i: common_vendor.t(message.time)
+            f: item.fromUserHeadImgUrl,
+            g: common_vendor.o(toOtherHome, item.messageId),
+            h: common_vendor.t(item.content),
+            i: common_vendor.t(item.createTime)
           }, {
-            j: index
+            j: item.messageId
           });
         }),
         b: common_vendor.unref(inputText),

@@ -1,3 +1,7 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="container">
 		<view class="input-email">
@@ -142,7 +146,7 @@
 	let codeSucc = ref(false)
 	const echeckApi = async (forPwd, email) => {
 		const res = await echeck(forPwd, email);
-		console.log(res, 111);
+		// console.log(res, 111);
 		if (res.data.code == "200" || res.data.code == 200) {
 			codeSucc.value = true;
 		} else {
@@ -154,7 +158,7 @@
 	}
 	const forgetPwdApi = async (data) => {
 		const res = await forgetPwd(data);
-		console.log(res, 222);
+		// console.log(res, 222);
 		if (res.data.code == "200" || res.data.code == 200) {
 			uni.showToast({
 				title: '修改密码成功',

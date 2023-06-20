@@ -4,6 +4,11 @@ export const log = (email, pwd) => {
 	return request(`/login?email=${email}&password=${pwd}`, 'POST')
 }
 
+export const logout = () => {
+	return request(`/logout`, 'GET')
+}
+
+
 export const echeck = (forWhat, email) => {
 	return request(`/emailVerificationCode?forWhat=${forWhat}&email=${email}`, 'GET')
 }

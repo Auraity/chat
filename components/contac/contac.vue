@@ -1,3 +1,7 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="container">
 		<view class="card">
@@ -20,7 +24,6 @@
 	const props = defineProps({
 		'cotdata': 'cotdata'
 	})
-	// console.log(props.cotdata, "666");
 </script>
 
 <style lang="scss">

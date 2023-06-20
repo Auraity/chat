@@ -1,3 +1,7 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="container">
 		<input class="input" type="text" v-model="newUsername" placeholder="请输入新的用户名" />
@@ -12,6 +16,17 @@
 
 	let newUsername = ref('')
 	let isValid = ref(true)
+
+	import {
+		defineProps
+	} from 'vue'
+	import {
+		onLoad
+	} from "@dcloudio/uni-app"
+
+	onLoad((e) => {
+		newUsername.value = e.friendName;
+	})
 
 	function changeUsername() {
 		// 发送请求到服务器更改用户名

@@ -18,11 +18,6 @@ const _sfc_main = {
         url: "/pages/searchPage/searchPage"
       });
     }
-    function enterSocket() {
-      common_vendor.index.navigateTo({
-        url: "/pages/WebSocket/WebSocket"
-      });
-    }
     let msgDa = common_vendor.ref([]);
     const msgApi = async () => {
       const res = await api_tabbar.msg();
@@ -41,8 +36,7 @@ const _sfc_main = {
         a: common_vendor.o(toSearch),
         b: common_vendor.p({
           msgdata: common_vendor.unref(msgDa)
-        }),
-        c: common_vendor.o(enterSocket)
+        })
       };
     };
   }

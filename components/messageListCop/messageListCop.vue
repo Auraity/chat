@@ -1,6 +1,10 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="container" v-for="(item,i) in props.msgdata" :key="item.sessionId">
-		<view class="card">
+		<view class="card" @click="enterSocket(item.sessionId)">
 			<image class="thumbnail" :src="item.friends[0].friendHeadImgUrl" />
 			<view class="content">
 				<text class="title"> {{item.friends[0].friendName}} </text><br />
@@ -28,6 +32,12 @@
 	} from 'vue'
 	// 获取父组件的值
 	const props = defineProps(['msgdata'])
+
+	function enterSocket(sessionId) {
+		uni.navigateTo({
+			url: `/pages/WebSocket/WebSocket?sessionId=${sessionId}`
+		})
+	}
 </script>
 
 <style lang="scss">

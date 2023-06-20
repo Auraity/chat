@@ -1,3 +1,7 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="container">
 		<view class="addTrend" @click="addTrends">
@@ -26,10 +30,10 @@
 	let allFTrendsDa = ref([])
 	const allFTrendsApi = async () => {
 		const res = await allFTrends();
-		console.log(res);
+		// console.log(res);
 		if (res.data.code == "200" || res.data.code == 200) {
 			allFTrendsDa.value = res.data.data.list;
-			console.log(allFTrendsDa.value, 222);
+			// console.log(allFTrendsDa.value, 222);
 		} else {
 			uni.showToast({
 				title: '数据获取失败',

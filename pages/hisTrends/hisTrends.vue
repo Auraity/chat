@@ -1,3 +1,7 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="container" v-for="(item,i) in hisTrendsDa" :key="i">
 		<view class="card">
@@ -28,10 +32,10 @@
 	let hisTrendsDa = ref([])
 	const hisTrendsApi = async (friendId) => {
 		const res = await hisTrends(friendId);
-		console.log(res, 111);
+		// console.log(res, 111);
 		if (res.data.code == "200" || res.data.code == 200) {
 			hisTrendsDa.value = res.data.data.list;
-			console.log(hisTrendsDa, 222);
+			// console.log(hisTrendsDa, 222);
 		} else {
 			uni.showToast({
 				title: '数据获取失败',

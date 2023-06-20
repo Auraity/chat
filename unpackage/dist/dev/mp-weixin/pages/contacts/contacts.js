@@ -42,7 +42,6 @@ const _sfc_main = {
       });
     }
     function toOtherHome(fid) {
-      console.log(fid);
       common_vendor.index.navigateTo({
         url: `/pages/otherPeapleHome/otherPeapleHome?fid=${fid}`
       });

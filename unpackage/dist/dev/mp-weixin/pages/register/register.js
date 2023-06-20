@@ -111,7 +111,6 @@ const _sfc_main = {
     let codeSucc = common_vendor.ref(false);
     const echeckApi = async (forWhat, email) => {
       const res = await api_login.echeck(forWhat, email);
-      console.log(res, 111);
       if (res.data.code == "200" || res.data.code == 200) {
         codeSucc.value = true;
       } else {
@@ -123,7 +122,6 @@ const _sfc_main = {
     };
     const rgsApi = async (data) => {
       const res = await api_login.rgs(data);
-      console.log(res, 222);
       if (res.data.code == "200" || res.data.code == 200) {
         common_vendor.index.showToast({
           title: "注册成功",

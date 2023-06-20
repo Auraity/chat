@@ -1,3 +1,7 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="container">
 		<!-- 顶部个人信息 -->
@@ -68,7 +72,6 @@
 		// console.log(res, 111);
 		if (res.data.code == "200" || res.data.code == 200) {
 			hisHomeDa.value = res.data.data;
-			// console.log(hisHomeDa.value, 222);
 		} else {
 			uni.showToast({
 				title: '数据获取失败',
@@ -79,7 +82,7 @@
 
 	const deleteFidApi = async (friendId) => {
 		const res = await deleteFid(friendId);
-		console.log(res, 111);
+		// console.log(res, 111);
 		if (res.data.code == "200" || res.data.code == 200) {
 			uni.showToast({
 				title: '删除成功',

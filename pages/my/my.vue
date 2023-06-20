@@ -1,3 +1,7 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="container">
 		<!-- 头部个人信息 -->
@@ -46,45 +50,12 @@
 		ref
 	} from "vue";
 	import {
+		logout
+	} from '../../api/login.js'
+	import {
 		my
 	} from '../../api/tabbar.js'
 
-	function toMyTrends() {
-		uni.navigateTo({
-			url: '/pages/myTrends/myTrends'
-		})
-	}
-
-	function alterUN() {
-		uni.navigateTo({
-			url: '/pages/alterUserName/alterUserName'
-		})
-	}
-
-	function toAlterSign() {
-		uni.navigateTo({
-			url: '/pages/alterSign/alterSign'
-		})
-	}
-
-	function alterPwd() {
-		uni.navigateTo({
-			url: '/pages/alterPassword/alterPassword'
-		})
-	}
-
-	function exit() {
-		uni.reLaunch({
-			url: '/pages/login/login'
-		})
-	}
-	uni.getStorage({
-		key: 'user',
-		success: (res) => {
-			// console.log(res, "id");
-			me(res.data.userId)
-		}
-	})
 	// 个人信息渲染
 	let myDa = ref({})
 	const me = async (id) => {
@@ -100,6 +71,59 @@
 			});
 		}
 	}
+
+	// 退出
+	const out = async () => {
+		const res = await logout();
+		if (res.data.code == "200" || res.data.code == 200) {
+			uni.showToast({
+				title: '退出成功',
+				icon: 'none'
+			});
+			uni.reLaunch({
+				url: '/pages/login/login'
+			})
+		} else {
+			uni.showToast({
+				title: '退出失败',
+				icon: 'none'
+			});
+		}
+	}
+
+	function toMyTrends() {
+		uni.navigateTo({
+			url: '/pages/myTrends/myTrends'
+		})
+	}
+
+	function alterUN() {
+		uni.navigateTo({
+			url: `/pages/alterUserName/alterUserName?friendName=${myDa.value.friendName}`
+		})
+	}
+
+	function toAlterSign() {
+		uni.navigateTo({
+			url: `/pages/alterSign/alterSign?friendIntroduction=${myDa.value.friendIntroduction}`
+		})
+	}
+
+	function alterPwd() {
+		uni.navigateTo({
+			url: '/pages/alterPassword/alterPassword'
+		})
+	}
+
+	function exit() {
+		out()
+	}
+	uni.getStorage({
+		key: 'user',
+		success: (res) => {
+			me(res.data.userId)
+		}
+	})
 </script>
 
 <style>

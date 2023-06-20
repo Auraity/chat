@@ -21,10 +21,8 @@ const _sfc_main = {
     let allFTrendsDa = common_vendor.ref([]);
     const allFTrendsApi = async () => {
       const res = await api_trends.allFTrends();
-      console.log(res);
       if (res.data.code == "200" || res.data.code == 200) {
         allFTrendsDa.value = res.data.data.list;
-        console.log(allFTrendsDa.value, 222);
       } else {
         common_vendor.index.showToast({
           title: "数据获取失败",

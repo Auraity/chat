@@ -1,3 +1,7 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="container">
 		<view class="input-email">
@@ -19,6 +23,10 @@
 	import {
 		ref
 	} from 'vue';
+	import {
+		echeck,
+		forgetPwd
+	} from '../../api/login.js'
 	let email = ref('');
 	let code = ref('');
 	let pwd = ref('')
@@ -113,7 +121,6 @@
 	}
 
 	function sendCode() {
-		// console.log("发送验证码");
 		countdown.value = 60; // 重置倒计时为初始值
 		isCodeSent.value = true; // 验证码已发送
 		const timer = setInterval(() => {
@@ -124,6 +131,45 @@
 			}
 		}, 1000);
 
+		uni.getStorage({
+			key: 'user',
+			success: function(res) {
+				echeckApi('updatePassword', res.data.email)
+			}
+		})
+
+	}
+	// 调用接口
+	let codeSucc = ref(false)
+	const echeckApi = async (forPwd, email) => {
+		const res = await echeck(forPwd, email);
+		// console.log(res, 111);
+		if (res.data.code == "200" || res.data.code == 200) {
+			codeSucc.value = true;
+		} else {
+			uni.showToast({
+				title: '验证码获取失败',
+				icon: 'none'
+			});
+		}
+	}
+	const forgetPwdApi = async (data) => {
+		const res = await forgetPwd(data);
+		// console.log(res, 222);
+		if (res.data.code == "200" || res.data.code == 200) {
+			uni.showToast({
+				title: '修改密码成功',
+				icon: 'none'
+			});
+			uni.reLaunch({
+				url: '/pages/login/login'
+			})
+		} else {
+			uni.showToast({
+				title: '修改失败',
+				icon: 'none'
+			});
+		}
 	}
 </script>
 

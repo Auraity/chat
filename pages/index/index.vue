@@ -1,12 +1,14 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="container">
 		<view class="search" @click="toSearch">
 			<input type="text" placeholder="     ※ 点击此处进行消息搜索" />
 		</view>
 		<view class="messageList">
-			<view @click="enterSocket">
-				<messageListCop :msgdata='msgDa'></messageListCop>
-			</view>
+			<messageListCop :msgdata='msgDa'></messageListCop>
 		</view>
 	</view>
 </template>
@@ -26,11 +28,7 @@
 		})
 	}
 
-	function enterSocket() {
-		uni.navigateTo({
-			url: "/pages/WebSocket/WebSocket"
-		})
-	}
+
 	// 消息列表渲染
 	let msgDa = ref([])
 	const msgApi = async () => {

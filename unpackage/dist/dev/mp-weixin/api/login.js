@@ -3,6 +3,9 @@ const api_request = require("./request.js");
 const log = (email, pwd) => {
   return api_request.request(`/login?email=${email}&password=${pwd}`, "POST");
 };
+const logout = () => {
+  return api_request.request(`/logout`, "GET");
+};
 const echeck = (forWhat, email) => {
   return api_request.request(`/emailVerificationCode?forWhat=${forWhat}&email=${email}`, "GET");
 };
@@ -22,4 +25,5 @@ const forgetPwd = (data) => {
 exports.echeck = echeck;
 exports.forgetPwd = forgetPwd;
 exports.log = log;
+exports.logout = logout;
 exports.rgs = rgs;

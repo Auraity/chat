@@ -2,19 +2,21 @@
 	<view class="container">
 		<!-- 聊天记录 -->
 		<scroll-view class="chat-content" scroll-y>
-			<view v-for="(message, index) in messages" :key="index" class="message-container">
-				<view v-if="message.sender === 'me'" class="message-right">
+			<view v-for="(item, i) in historyMsgDa" :key="item.messageId" class="message-container">
+				<!-- 我的消息 -->
+				<view v-if="item.fromUserId==myId" class="message-right">
 					<view class="message-content-right">
-						<text class="message-text">{{ message.content }}</text><br />
-						<text class="message-time">{{ message.time }}</text>
+						<text class="message-text">{{ item.content }}</text><br />
+						<text class="message-time">{{ item.createTime }}</text>
 					</view>
-					<image class="avatar" :src="message.avatar" @click="toMyHome"></image>
+					<image class="avatar" :src="item.fromUserHeadImgUrl" @click="toMyHome"></image>
 				</view>
+				<!-- 他人发的消息 -->
 				<view v-else class="message-left">
-					<image class="avatar" :src="message.avatar" @click="toOtherHome"></image>
+					<image class="avatar" :src="item.fromUserHeadImgUrl" @click="toOtherHome"></image>
 					<view class="message-content-left">
-						<text class="message-text">{{ message.content }}</text><br />
-						<text class="message-ltime">{{ message.time }}</text>
+						<text class="message-text">{{ item.content }}</text><br />
+						<text class="message-ltime">{{ item.createTime }}</text>
 					</view>
 				</view>
 			</view>
@@ -35,81 +37,24 @@
 	import {
 		ref
 	} from "vue";
-	const messages = [{
-			sender: 'other',
-			avatar: '/static/addFriends.png',
-			content: '你好？',
-			time: '2023-09-09 09:30'
-		},
-		{
-			sender: 'me',
-			avatar: '/static/logo.png',
-			content: '你好，我有一个问题想请教你。',
-			time: '2023-09-09 09:35'
-		},
-		{
-			sender: 'me',
-			avatar: '/static/logo.png',
-			content: '你好，我有一个问题想请教你。',
-			time: '2023-09-09 09:35'
-		},
-		{
-			sender: 'me',
-			avatar: '/static/logo.png',
-			content: '你好，我有一个问题想请教你。',
-			time: '2023-09-09 09:35'
-		},
-		{
-			sender: 'me',
-			avatar: '/static/logo.png',
-			content: '你好，我有一个问题想请教你我有一个问题想请教你。',
-			time: '2023-09-09 09:35'
-		},
-		{
-			sender: 'other',
-			avatar: '/static/addFriends.png',
-			content: '你好，有什么可以帮到你的吗你好，有什么可以帮到你的吗？',
-			time: '2023-09-09 09:38'
-		},
-		{
-			sender: 'other',
-			avatar: '/static/addFriends.png',
-			content: '你好，有什么可以帮到你的吗你好，有什么可以帮到你的吗？',
-			time: '2023-09-09 09:38'
-		},
-		{
-			sender: 'other',
-			avatar: '/static/addFriends.png',
-			content: '你好，有什么可以帮到你的吗你好，有什么可以帮到你的吗？',
-			time: '2023-09-09 09:38'
-		},
-		{
-			sender: 'other',
-			avatar: '/static/addFriends.png',
-			content: '你好，有什么可以帮到你的吗你好，有什么可以帮到你的吗？',
-			time: '2023-09-09 09:38'
-		},
-		{
-			sender: 'other',
-			avatar: '/static/addFriends.png',
-			content: '你好，有什么可以帮到你的吗你好，有什么可以帮到你的吗？',
-			time: '2023-09-09 09:38'
-		},
-		{
-			sender: 'me',
-			avatar: '/static/logo.png',
-			content: '你好，我有一个问题想请教你。',
-			time: '2023-09-09 09:35'
-		},
-		// 添加更多聊天记录...
-	];
+
 	let inputText = ref('');
+
+
 
 	function toOtherHome() {
 		uni.navigateTo({
 			url: '/pages/otherPeapleHome/otherPeapleHome'
 		})
 	}
+
+	let myId = ref(null)
+	uni.getStorage({
+		key: 'user',
+		success: function(res) {
+			myId.value = res.data.userId
+		}
+	})
 
 	function toMyHome() {
 		uni.switchTab({
@@ -121,10 +66,9 @@
 	let historyMsgDa = ref([])
 	const historyMsgApi = async (sessionId) => {
 		const res = await historyMsg(sessionId);
-		console.log(res, 11);
+		// console.log(res, 11);
 		if (res.data.code == "200" || res.data.code == 200) {
 			historyMsgDa.value = res.data.data.list;
-			console.log(historyMsgDa.value, 22);
 		} else {
 			uni.showToast({
 				title: '数据获取失败',
@@ -132,7 +76,8 @@
 			});
 		}
 	}
-	historyMsgApi(1)
+	const props = defineProps(['sessionId'])
+	historyMsgApi(props.sessionId)
 </script>
 
 <style lang="scss">

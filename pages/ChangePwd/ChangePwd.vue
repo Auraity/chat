@@ -1,6 +1,10 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view>
-		
+
 	</view>
 </template>
 
@@ -8,7 +12,7 @@
 	export default {
 		data() {
 			return {
-				
+
 			};
 		}
 	}

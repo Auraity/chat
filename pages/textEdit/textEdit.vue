@@ -1,3 +1,7 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="container">
 		<textarea v-model="content" class="content-input" placeholder="请输入1024个字符以内的内容..." maxlength="200"></textarea>

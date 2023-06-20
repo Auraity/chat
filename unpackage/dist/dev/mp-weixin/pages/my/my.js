@@ -1,41 +1,11 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const api_login = require("../../api/login.js");
 const api_tabbar = require("../../api/tabbar.js");
 require("../../api/request.js");
 const _sfc_main = {
   __name: "my",
   setup(__props) {
-    function toMyTrends() {
-      common_vendor.index.navigateTo({
-        url: "/pages/myTrends/myTrends"
-      });
-    }
-    function alterUN() {
-      common_vendor.index.navigateTo({
-        url: "/pages/alterUserName/alterUserName"
-      });
-    }
-    function toAlterSign() {
-      common_vendor.index.navigateTo({
-        url: "/pages/alterSign/alterSign"
-      });
-    }
-    function alterPwd() {
-      common_vendor.index.navigateTo({
-        url: "/pages/alterPassword/alterPassword"
-      });
-    }
-    function exit() {
-      common_vendor.index.reLaunch({
-        url: "/pages/login/login"
-      });
-    }
-    common_vendor.index.getStorage({
-      key: "user",
-      success: (res) => {
-        me(res.data.userId);
-      }
-    });
     let myDa = common_vendor.ref({});
     const me = async (id) => {
       const res = await api_tabbar.my(id);
@@ -48,6 +18,52 @@ const _sfc_main = {
         });
       }
     };
+    const out = async () => {
+      const res = await api_login.logout();
+      if (res.data.code == "200" || res.data.code == 200) {
+        common_vendor.index.showToast({
+          title: "退出成功",
+          icon: "none"
+        });
+        common_vendor.index.reLaunch({
+          url: "/pages/login/login"
+        });
+      } else {
+        common_vendor.index.showToast({
+          title: "退出失败",
+          icon: "none"
+        });
+      }
+    };
+    function toMyTrends() {
+      common_vendor.index.navigateTo({
+        url: "/pages/myTrends/myTrends"
+      });
+    }
+    function alterUN() {
+      common_vendor.index.navigateTo({
+        url: `/pages/alterUserName/alterUserName?friendName=${myDa.value.friendName}`
+      });
+    }
+    function toAlterSign() {
+      common_vendor.index.navigateTo({
+        url: `/pages/alterSign/alterSign?friendIntroduction=${myDa.value.friendIntroduction}`
+      });
+    }
+    function alterPwd() {
+      common_vendor.index.navigateTo({
+        url: "/pages/alterPassword/alterPassword"
+      });
+    }
+    function exit() {
+      out();
+    }
+    common_vendor.index.getStorage({
+      key: "user",
+      success: (res) => {
+        me(res.data.userId);
+      }
+    });
     return (_ctx, _cache) => {
       return {
         a: common_vendor.unref(myDa).friendHeadImgUrl,

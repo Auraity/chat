@@ -3,8 +3,11 @@ const common_vendor = require("../../common/vendor.js");
 const _sfc_main = {
   __name: "alterSign",
   setup(__props) {
-    let newSign = common_vendor.ref();
+    let newSign = common_vendor.ref("");
     let isValid = common_vendor.ref(true);
+    common_vendor.onLoad((e) => {
+      newSign.value = e.friendIntroduction;
+    });
     function changeSign() {
       formCheck();
       if (isValid.value) {

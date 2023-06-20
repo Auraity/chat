@@ -16,7 +16,6 @@ const _sfc_main = {
     let searchResults = common_vendor.ref(false);
     let username = common_vendor.ref("");
     function handleSearch() {
-      console.log(username.value);
       searchFriApi(username.value);
     }
     let searchFriDa = common_vendor.ref([]);
@@ -40,8 +39,14 @@ const _sfc_main = {
         c: common_vendor.o(handleSearch),
         d: common_vendor.unref(searchResults) == false
       }, common_vendor.unref(searchResults) == false ? {} : {
-        e: common_vendor.p({
-          cotdata: common_vendor.unref(searchFriDa)
+        e: common_vendor.f(common_vendor.unref(searchFriDa), (item, i, i0) => {
+          return {
+            a: "3e9f9264-0-" + i0,
+            b: common_vendor.p({
+              cotdata: item
+            }),
+            c: i
+          };
         })
       });
     };

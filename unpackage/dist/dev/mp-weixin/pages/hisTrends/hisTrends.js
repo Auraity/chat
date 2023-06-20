@@ -10,10 +10,8 @@ const _sfc_main = {
     let hisTrendsDa = common_vendor.ref([]);
     const hisTrendsApi = async (friendId) => {
       const res = await api_contacts.hisTrends(friendId);
-      console.log(res, 111);
       if (res.data.code == "200" || res.data.code == 200) {
         hisTrendsDa.value = res.data.data.list;
-        console.log(hisTrendsDa, 222);
       } else {
         common_vendor.index.showToast({
           title: "数据获取失败",

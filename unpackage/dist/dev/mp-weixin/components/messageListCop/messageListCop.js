@@ -9,6 +9,11 @@ const _sfc_main = {
     common_vendor.ref("");
     common_vendor.ref("");
     common_vendor.ref("");
+    function enterSocket(sessionId) {
+      common_vendor.index.navigateTo({
+        url: `/pages/WebSocket/WebSocket?sessionId=${sessionId}`
+      });
+    }
     return (_ctx, _cache) => {
       return {
         a: common_vendor.f(props.msgdata, (item, i, i0) => {
@@ -17,7 +22,8 @@ const _sfc_main = {
             b: common_vendor.t(item.friends[0].friendName),
             c: common_vendor.t(item.lastMessage),
             d: common_vendor.t(item.lastActiveTime),
-            e: item.sessionId
+            e: common_vendor.o(($event) => enterSocket(item.sessionId), item.sessionId),
+            f: item.sessionId
           };
         })
       };

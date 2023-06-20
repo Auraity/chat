@@ -1,3 +1,7 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="container">
 		<view class="input-container">
@@ -159,7 +163,7 @@
 	let codeSucc = ref(false)
 	const echeckApi = async (forWhat, email) => {
 		const res = await echeck(forWhat, email);
-		console.log(res, 111);
+		// console.log(res, 111);
 		if (res.data.code == "200" || res.data.code == 200) {
 			codeSucc.value = true;
 		} else {
@@ -171,7 +175,7 @@
 	}
 	const rgsApi = async (data) => {
 		const res = await rgs(data);
-		console.log(res, 222);
+		// console.log(res, 222);
 		if (res.data.code == "200" || res.data.code == 200) {
 			uni.showToast({
 				title: '注册成功',

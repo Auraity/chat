@@ -1,5 +1,5 @@
 // 封装请求
-let baseUrl = "http://129.211.211.180:8081"
+let baseUrl = "http://172.20.10.3:8080"
 
 const request = (url, method, data) => {
 	return new Promise((resolve, reject) => {

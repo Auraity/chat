@@ -1,5 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const api_login = require("../../api/login.js");
+require("../../api/request.js");
 const _sfc_main = {
   __name: "alterPassword",
   setup(__props) {
@@ -90,7 +92,25 @@ const _sfc_main = {
           isCodeSent.value = false;
         }
       }, 1e3);
+      common_vendor.index.getStorage({
+        key: "user",
+        success: function(res) {
+          echeckApi("updatePassword", res.data.email);
+        }
+      });
     }
+    let codeSucc = common_vendor.ref(false);
+    const echeckApi = async (forPwd, email2) => {
+      const res = await api_login.echeck(forPwd, email2);
+      if (res.data.code == "200" || res.data.code == 200) {
+        codeSucc.value = true;
+      } else {
+        common_vendor.index.showToast({
+          title: "验证码获取失败",
+          icon: "none"
+        });
+      }
+    };
     return (_ctx, _cache) => {
       return common_vendor.e({
         a: common_vendor.unref(email),

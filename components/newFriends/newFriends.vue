@@ -1,3 +1,7 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="card" v-for="(item,i) in props.newFriDa" :key="i">
 		<view class="cleft">
@@ -34,21 +38,18 @@
 	} from 'vue'
 	// 获取父组件的值
 	const props = defineProps(['newFriDa'])
-	// console.log(props.newFriDa, "666");
 
 	// 获取自己的id
 	let uId = ref('')
 	uni.getStorage({
 		key: 'user',
 		success: (res) => {
-			console.log(res, "id");
 			uId.value = res.data.userId
-			console.log(uId.value);
 		}
 	})
 	const upStatusApi = async (uid, fid, status) => {
 		const res = await updateStatus(uid, fid, status);
-		console.log(res, 111);
+		// console.log(res, 111);
 		if (res.data.code == "200" || res.data.code == 200) {
 			uni.switchTab({
 				url: '/pages/contacts/contacts'

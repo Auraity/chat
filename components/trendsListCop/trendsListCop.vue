@@ -1,3 +1,7 @@
+/**
+* @Author 邓冬勤
+* @Description
+*/
 <template>
 	<view class="card" v-for="(item,i) in props.allFTrendsDa" :key="i">
 		<image class="thumbnail" :src="item.userHeadImgUrl" />
