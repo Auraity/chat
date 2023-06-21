@@ -1,7 +1,5 @@
 {
-  "navigationBarTitleText": "mychat",
-  "enablePullDownRefresh": true,
-  "usingComponents": {
-    "message-list-cop": "../../components/messageListCop/messageListCop"
-  }
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {}
 }

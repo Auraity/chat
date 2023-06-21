@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/login/login",
     "pages/index/index",
+    "pages/indexs/indexs",
     "pages/register/register",
     "pages/contacts/contacts",
     "pages/trends/trends",
@@ -32,7 +32,7 @@
     "list": [
       {
         "text": "消息",
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/indexs/indexs",
         "iconPath": "static/tabbar/home.png",
         "selectedIconPath": "static/tabbar/home(1).png"
       },

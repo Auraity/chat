@@ -23,15 +23,89 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.container input.data-v-1cf27b2a {
-  pointer-events: none;
-  width: 750rpx;
-  height: 80rpx;
-  padding: 10rpx;
-  border: 1rpx solid #dddddd;
+page {
   background-color: #f4f4f4;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100rpx;
+  align-items: center;
+  justify-content: center;
+}
+.container .logo {
+  width: 500rpx;
+  text-align: center;
+  margin-bottom: 150rpx;
+  color: #0aa3b4;
+  font-size: 60rpx;
+  font-family: "黑体";
+}
+.container .input-email {
+  width: 500rpx;
+  justify-content: center;
+  display: flex;
+}
+.container .input-email .emailInput {
+  height: 40rpx;
+  margin: 30rpx 0;
+  border-bottom: 1rpx solid #ccc;
   font-size: 24rpx;
 }
-.container .messageList.data-v-1cf27b2a {
-  margin-top: 30rpx;
+.container .input-email .codeCli {
+  width: 30%;
+  background-color: #0aa3b4;
+  color: #fff;
+  border: none;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  cursor: pointer;
+  height: 70rpx;
+}
+.container .input-email .codeSecond {
+  width: 30%;
+  background-color: darkgray;
+  color: #fff;
+  border: none;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  height: 70rpx;
+  pointer-events: none;
+}
+.container .content {
+  margin-top: 110rpx;
+}
+.container .content .input-container {
+  margin-bottom: 40rpx;
+  width: 500rpx;
+}
+.container .content .input-container .input {
+  height: 40rpx;
+  margin: 30rpx 0;
+  border-bottom: 1rpx solid #ccc;
+  font-size: 26rpx;
+}
+.container .content .text {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: royalblue;
+  margin-top: 50rpx;
+}
+.container .content .text .forget {
+  color: gray !important;
+}
+.container .content .login-button {
+  width: 100%;
+  margin-top: 100rpx;
+  height: 80rpx;
+  background-color: #0aa3b4;
+  color: #fff;
+  border: none;
+  border-radius: 5rpx;
+  font-size: 28rpx;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }

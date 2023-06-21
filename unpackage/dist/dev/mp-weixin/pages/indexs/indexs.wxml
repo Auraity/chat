@@ -1,0 +1,1 @@
+<view class="container data-v-e8ea2510"><view class="search data-v-e8ea2510" bindtap="{{a}}"><input class="data-v-e8ea2510" type="text" placeholder="     ※ 点击此处进行消息搜索"/></view><view class="messageList data-v-e8ea2510"><message-list-cop wx:if="{{b}}" class="data-v-e8ea2510" u-i="e8ea2510-0" bind:__l="__l" u-p="{{b}}"></message-list-cop></view></view>

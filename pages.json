@@ -1,14 +1,14 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/login/login",
+			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
 			}
 
 		}, {
-			"path": "pages/index/index",
+			"path": "pages/indexs/indexs",
 			"style": {
 				"navigationBarTitleText": "mychat",
 				"enablePullDownRefresh": true
@@ -146,7 +146,7 @@
 		"selectedColor": "#28b3dd",
 		"list": [{
 				"text": "消息",
-				"pagePath": "pages/index/index",
+				"pagePath": "pages/indexs/indexs",
 				"iconPath": "static/tabbar/home.png",
 				"selectedIconPath": "static/tabbar/home(1).png"
 

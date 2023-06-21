@@ -1,45 +1,85 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const api_tabbar = require("../../api/tabbar.js");
+const api_login = require("../../api/login.js");
 require("../../api/request.js");
-if (!Array) {
-  const _easycom_messageListCop2 = common_vendor.resolveComponent("messageListCop");
-  _easycom_messageListCop2();
-}
-const _easycom_messageListCop = () => "../../components/messageListCop/messageListCop.js";
-if (!Math) {
-  _easycom_messageListCop();
-}
 const _sfc_main = {
   __name: "index",
   setup(__props) {
-    function toSearch() {
+    let email = common_vendor.ref("");
+    let pwd = common_vendor.ref("");
+    function toRegister() {
       common_vendor.index.navigateTo({
-        url: "/pages/searchPage/searchPage"
+        url: "/pages/register/register"
       });
     }
-    let msgDa = common_vendor.ref([]);
-    const msgApi = async () => {
-      const res = await api_tabbar.msg();
+    function toFogPwd() {
+      common_vendor.index.navigateTo({
+        url: "/pages/forgetPwd/forgetPwd"
+      });
+    }
+    let isValid = common_vendor.ref(true);
+    const loginApi = async () => {
+      const res = await api_login.log(email.value, pwd.value);
       if (res.data.code == "200" || res.data.code == 200) {
-        msgDa.value = res.data.data.list;
+        common_vendor.index.setStorageSync("user", res.data.data);
+        common_vendor.index.reLaunch({
+          url: "/pages/indexs/indexs"
+        });
       } else {
         common_vendor.index.showToast({
-          title: "数据获取失败",
+          title: "用户信息不正确",
           icon: "none"
         });
       }
     };
-    msgApi();
+    function login() {
+      formCheck();
+      if (isValid.value) {
+        loginApi();
+      }
+    }
+    var emailRegex = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
+    function changeEmail(e) {
+      email.value = e.detail.value;
+    }
+    function changePwd(e) {
+      pwd.value = e.detail.value;
+    }
+    function formCheck() {
+      isValid.value = true;
+      if (email.value === "" || email.value == null) {
+        isValid.value = false;
+        common_vendor.index.showToast({
+          title: "邮箱不能为空",
+          icon: "none"
+        });
+      } else {
+        if (!emailRegex.test(email.value)) {
+          isValid.value = false;
+          common_vendor.index.showToast({
+            title: "邮箱输入的格式不正确",
+            icon: "none"
+          });
+        }
+      }
+      if (pwd.value === "" || pwd.value === null) {
+        isValid.value = false;
+        common_vendor.index.showToast({
+          title: "密码不能为空",
+          icon: "none"
+        });
+      }
+    }
     return (_ctx, _cache) => {
       return {
-        a: common_vendor.o(toSearch),
-        b: common_vendor.p({
-          msgdata: common_vendor.unref(msgDa)
-        })
+        a: common_vendor.o(changeEmail),
+        b: common_vendor.o(changePwd),
+        c: common_vendor.o(toRegister),
+        d: common_vendor.o(toFogPwd),
+        e: common_vendor.o(login)
       };
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-1cf27b2a"], ["__file", "D:/HXproject/Chat/pages/index/index.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/HXproject/Chat/pages/index/index.vue"]]);
 wx.createPage(MiniProgramPage);
